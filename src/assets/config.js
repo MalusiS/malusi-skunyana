@@ -24,15 +24,15 @@ export const projects = [
   {
     id: 'tv-show-explorer',
     title: 'TV Show Explorer App',
-    tagline: 'Dynamic multi-view app integrating the TVMaze API with advanced search and state management.',
-    tech: ['React', 'JavaScript', 'Fetch API', 'CI/CD'],
+    tagline: 'Dynamic TV shows and episodes explorer using vanilla JS, fetch API, and DOM rendering',
+    tech: ['JavaScript', 'HTML', 'Fetch API', 'CI/CD'],
     github: 'https://github.com/MalusiS/Project-TV-Show',
     live: 'https://cyf-malusis-tv.netlify.app/',
     image: '/projects/tv-show-explorer.png',
     narrative: {
       problem: 'Building a single-page application that allows users to browse a large catalog of TV shows, search, and navigate seamlessly between a high-level show listing and a detailed episode guide.',
-      solution: 'Architected the internal React routing and state logic to manage the transition between list and detail views efficiently. Implemented robust `fetch` logic for the TVMaze API, including user-facing loading states and clean error handling. Developed the dynamic, client-side free-text search and filtering feature.',
-      stack: ['React (Component Architecture)', 'Fetch API', 'State Management', 'Netlify CI/CD']
+      solution: 'Architected seamless transitions between list and detail views. Implemented robust fetch logic for the TVMaze API, complete with loading states and error handling. Developed dynamic client-side search and filtering, enabling users to explore shows and episodes efficiently in real time.',
+      stack: ['JavaScript (vanilla)', 'Fetch API', 'State Management', 'Netlify CI/CD']
     }
   },
   {
