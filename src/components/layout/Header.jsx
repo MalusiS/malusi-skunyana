@@ -19,13 +19,20 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export default function Header() {
+/**
+ * @param {object} props
+ * @param {function} props.onNavigate - Function to call when a navigation link is clicked (to reset state).
+ */
+export default function Header({ onNavigate }) {
   return (
     <header className="p-6 flex items-center justify-between border-b sticky top-0 bg-white z-10 shadow-sm">
       
       {/* Brand/Logo Area */}
       <div className="flex items-center gap-4">
-        <h1 className="text-2xl font-bold text-gray-800">Malusi Skunyana</h1>
+        {/* Call onNavigate when clicking the logo/title */}
+        <a href="#" onClick={onNavigate}>
+          <h1 className="text-2xl font-bold text-gray-800 hover:text-indigo-600 transition">Malusi Skunyana</h1>
+        </a>
         <p className="text-sm text-gray-500 hidden sm:block">Front End Developer | Analytical Precision</p>
       </div>
       
@@ -34,7 +41,9 @@ export default function Header() {
         {navItems.map((item) => (
           <a
             key={item.name}
-            href={item.href} // This uses the anchor links: #, #about, etc.
+            href={item.href}
+            // Call onNavigate when clicking any menu item
+            onClick={onNavigate}
             className="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium"
           >
             {item.name}

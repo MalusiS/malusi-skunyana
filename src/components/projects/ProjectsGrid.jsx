@@ -1,30 +1,55 @@
 // src/components/projects/ProjectsGrid.jsx
 
 import React from 'react';
-import { projects } from '../../assets/config'; // Import the project data
-
-// Import the reusable card component (you will create this next)
-import ProjectCard from './ProjectCard'; 
+import ProjectCard from './ProjectCard';
+import { ArrowDown } from 'lucide-react';
+import { otherProjects } from '../../assets/otherProjectsConfig';
+import { projects } from '../../assets/config';
 
 /**
- * Renders the main projects section, mapping project data to ProjectCard components.
- * @param {object} props - Component props.
- * @param {function} props.onOpenModal - Function passed from App.jsx to set the state for the modal.
+ * @param {object} props
+ * @param {function} props.onOpenModal - Existing function to open the project detail modal.
+ * @param {function} props.onViewOtherProjects - New function to trigger showing the other projects section.
+ * @param {boolean} props.showCta - New flag to determine if the 'See Other Projects' button should be visible.
  */
-export default function ProjectsGrid({ onOpenModal }) {
+export default function ProjectsGrid({ onOpenModal, onViewOtherProjects, showCta }) {
   return (
-    <section id="projects" className="py-12">
-      <h3 className="text-4xl font-bold text-gray-800 mb-10 border-b pb-2">Featured Projects</h3>
-      
-      <div className="grid md:grid-cols-3 gap-8">
-        {/* Map over the projects data and render a card for each */}
-        {projects.map(project => (
-          <ProjectCard 
-            key={project.id} 
-            project={project} 
-            onOpenModal={() => onOpenModal(project)} // Pass a function to open the modal with the project data
-          />
-        ))}
+    <section id="projects" className="py-12 md:py-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
+          Featured Projects
+        </h2>
+        <p className="text-xl text-gray-500 mb-10">
+          Highlighting my best and most technically complex work.
+        </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {projects.map((project) => (
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              // RE-INTEGRATING YOUR EXISTING MODAL LOGIC HERE
+              onOpenModal={() => onOpenModal(project)} 
+              // Spread the rest of the project properties (assuming ProjectCard uses them)
+              {...project} 
+            />
+          ))}
+        </div>
+
+        {/* New: See Other Projects CTA */}
+        {showCta && (
+          <div className="flex justify-center mt-16">
+            <button
+              onClick={onViewOtherProjects}
+              className="flex items-center space-x-2 px-8 py-3 text-lg font-semibold rounded-lg text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50 transition duration-300"
+              aria-expanded={!showCta} 
+              aria-controls="other-projects"
+            >
+              <span>See {otherProjects.length} Other Projects</span>
+              <ArrowDown size={20} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
