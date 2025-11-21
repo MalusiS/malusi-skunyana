@@ -1,13 +1,8 @@
 // src/components/layout/Header.jsx
 
 import React from 'react';
-// Updated imports: Changed Download to FileText (document icon for Resume)
 import { Github, Linkedin, Mail, FileText } from 'lucide-react'; 
-
-// Import all constants from the central config file
 import { GITHUB_URL, LINKEDIN_URL, RESUME_URL, EMAIL } from '../../assets/config';
-
-// Import the new reusable UI component
 import IconLink from '../UI/IconLink';
 
 // Define the navigation items for the main menu
@@ -54,7 +49,6 @@ export default function Header({ onNavigate }) {
       {/* Social Icons and Resume Button */}
       <nav className="flex items-center gap-4">
         
-        {/* Refactored Icon Links */}
         <IconLink href={GITHUB_URL} label="GitHub Profile">
           <Github size={20} />
         </IconLink>
@@ -67,7 +61,6 @@ export default function Header({ onNavigate }) {
           <Mail size={20} />
         </IconLink>
         
-        {/* Primary CTA: Resume Button (Updated icon) */}
         <a 
           href={RESUME_URL} 
           download

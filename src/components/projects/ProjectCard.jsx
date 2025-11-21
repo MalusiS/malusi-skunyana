@@ -21,7 +21,8 @@ export default function ProjectCard({ project, onOpenModal }) {
       </div>
       
       <div className="p-6 flex-grow flex flex-col">
-        <h4 className="text-xl font-semibold text-gray-800">{project.title}</h4>
+        {/* ACCESSIBILITY FIX: Changed h4 to h3 to maintain sequential order */}
+        <h3 className="text-xl font-semibold text-gray-800">{project.title}</h3>
         <p className="text-sm text-gray-600 mt-1 flex-grow">{project.tagline}</p>
         
         {/* Tech Stack Tags */}

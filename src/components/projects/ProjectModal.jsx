@@ -14,7 +14,6 @@ export default function ProjectModal({ project, onClose }) {
   if (!project) return null;
 
   return (
-    // Fixed overlay for background dimming and closing via background click
     <div 
       className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300" 
       onClick={onClose}

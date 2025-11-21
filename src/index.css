@@ -1,1 +1,9 @@
+/* src/index.css */
+
 @import "tailwindcss";
+
+/* FIX: Adds offset for anchor links so the sticky header doesn't cover content */
+html {
+  scroll-padding-top: 100px; /* Adjusts scroll position */
+  scroll-behavior: smooth;   /* Ensures smooth scrolling effect */
+}
