@@ -6,53 +6,45 @@ import { otherProjects } from '../../assets/otherProjectsConfig.js';
 
 const PROJECTS_PER_PAGE = 6;
 
-/**
- * @param {object} props
- * @param {boolean} props.isVisible - Controls whether the section is mounted/visible.
- * @param {function} props.onLoaded - Function to call when the section is loaded (for scrolling).
- */
 export default function OtherProjects({ isVisible, onLoaded }) {
-  // ✔ Hooks must ALWAYS run — even when hidden
   const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_PAGE);
   const sectionRef = useRef(null);
-
-  // Fallback ensures no crash if import fails
   const allProjects = otherProjects || [];
 
-  /**
-   * ✔ Must run on every render.
-   * The effect *only activates* after isVisible becomes true.
-   */
+  // Scroll into view AND RESET COUNT when opened
   useEffect(() => {
     if (!isVisible) return;
 
+    // Defer resetting visibleCount so we don't call setState synchronously in the effect,
+    // which can cause cascading renders; reuse the existing timeout used for scrolling.
     if (sectionRef.current) {
-      // Slight delay ensures scroll happens after mount
       setTimeout(() => {
+        // Reset visible count if needed (functional update avoids stale closures)
+        setVisibleCount(prev => (prev === PROJECTS_PER_PAGE ? prev : PROJECTS_PER_PAGE));
+
         sectionRef.current.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
         });
-      }, 0);
 
-      if (onLoaded) {
-        onLoaded();
-      }
+        if (onLoaded) onLoaded();
+      }, 0);
+    } else {
+      // If there's no ref yet, still defer the reset to avoid sync setState in effect.
+      setTimeout(() => {
+        setVisibleCount(prev => (prev === PROJECTS_PER_PAGE ? prev : PROJECTS_PER_PAGE));
+        if (onLoaded) onLoaded();
+      }, 0);
     }
   }, [isVisible, onLoaded]);
 
-  // -----------------------------
-  // SAFE EARLY RETURNS (AFTER HOOKS)
-  // -----------------------------
-  if (!isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   if (allProjects.length === 0) {
     return (
-      <section id="other-projects" ref={sectionRef} className="py-12 md:py-24">
+      <section id="other-projects" ref={sectionRef} className="py-12 md:py-4">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-xl text-red-500">
+          <p className="text-xl text-red-500 animate-fade-up">
             Could not load project data. Please check asset path configuration.
           </p>
         </div>
@@ -60,44 +52,47 @@ export default function OtherProjects({ isVisible, onLoaded }) {
     );
   }
 
-  // Slice projects for pagination
   const projectsToShow = allProjects.slice(0, visibleCount);
-
-  // Compute whether button should display
-  const hasMore = visibleCount < allProjects.length;
+  const hasMoreProjects = visibleCount < allProjects.length;
 
   const handleLoadMore = () => {
-    setVisibleCount(allProjects.length);
+    // Show only the next set of 6
+    setVisibleCount(prev =>
+      Math.min(prev + PROJECTS_PER_PAGE, allProjects.length)
+    );
   };
 
   return (
-    <section
-      id="other-projects"
-      ref={sectionRef}
-      className="py-12 md:py-24"
-    >
+    <section id="other-projects" ref={sectionRef} className="py-12 md:py-4">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
+        <h2 className="text-4xl font-extrabold text-gray-800 mb-2 animate-fade-up">
           Other Projects & Demos
         </h2>
-        <p className="text-xl text-gray-500 mb-10">
+        <p className="text-xl text-gray-500 mb-10 animate-fade-up delay-100">
           A collection of smaller projects and freeCodeCamp challenges demonstrating core skills.
         </p>
 
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsToShow.map((project) => (
-            <SimpleProjectCard key={project.id} {...project} />
+          {projectsToShow.map((project, index) => (
+            <div
+              key={project.id}
+              className={`animate-fade-up`}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <SimpleProjectCard {...project} />
+            </div>
           ))}
         </div>
 
-        {/* Load More Button */}
-        {hasMore && (
-          <div className="flex justify-center mt-12">
+        {/* CTA: Only show when there are more projects to reveal */}
+        {hasMoreProjects && (
+          <div className="flex justify-center mt-12 animate-fade-up delay-200">
             <button
               onClick={handleLoadMore}
               className="px-6 py-3 text-lg font-semibold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 shadow-md hover:shadow-lg"
             >
-              Load {allProjects.length - visibleCount} More Projects
+              See More Projects
             </button>
           </div>
         )}

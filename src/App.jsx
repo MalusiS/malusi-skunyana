@@ -1,21 +1,18 @@
-// src/App.jsx (UPDATED WITH NAVIGATION RESET)
+// src/App.jsx
 
 import React, { useState } from 'react';
-
-// Import Layout Components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-
-// Import Section Components
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Skills from './components/sections/Skills';
+import ProjectsGrid from './components/projects/ProjectsGrid'; 
+import OtherProjects from './components/sections/OtherProjects'; 
 import Contact from './components/sections/Contact';
-import OtherProjects from './components/sections/OtherProjects';
 
-// Import Project Components & Data
-import ProjectsGrid from './components/projects/ProjectsGrid';
+// Import the ProjectModal component
 import ProjectModal from './components/projects/ProjectModal';
+// Import the projects data
 import { projects } from './assets/config';
 
 export default function App() {
@@ -31,7 +28,7 @@ export default function App() {
     setShowOtherProjects(true);
   };
 
-  // NEW: Function to hide the "Other Projects" section when navigating elsewhere
+  // Function to hide the "Other Projects" section when navigating elsewhere
   const handleResetOtherProjects = () => {
     if (showOtherProjects) {
       setShowOtherProjects(false);
@@ -51,31 +48,37 @@ export default function App() {
         {/* Pass the reset handler to the Header */}
         <Header onNavigate={handleResetOtherProjects} />
 
-        <main className="px-6 pb-24 space-y-24">
+        <main className="px-4 sm:px-6 pb-8 space-y-12 md:space-y-16">
           
+          {/* 1. HERO: Introduction */}
           <Hero />
-          
-          {/* ProjectsGrid receives the setter function to open the modal and the visibility control */}
+        
+          {/* 2. ABOUT: Context & Background */}
+          <About />
+        
+          {/* 3. SKILLS: Technical Qualification */}
+          <Skills />
+
+          {/* 4. FEATURED PROJECTS: The Proof */}
           <ProjectsGrid 
             onOpenModal={setOpenProject} 
             onViewOtherProjects={handleShowOtherProjects}
             showCta={!showOtherProjects} // Only show the CTA if other projects are NOT visible
           />
 
-          {/* Render the OtherProjects section based on state */}
+          {/* 5. OTHER PROJECTS: Depth (Hidden by default) */}
           <OtherProjects 
             isVisible={showOtherProjects} 
             onLoaded={handleOtherProjectsLoaded}
           />
           
-          <About />
-          <Skills />
+          {/* 6. CONTACT: Call to Action */}
           <Contact />
 
         </main>
       </div>
 
-      {/* ProjectModal remains unchanged */}
+      {/* Project Detail Modal */}
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setOpenProject(null)} 

@@ -8,13 +8,13 @@ import { projects } from '../../assets/config';
 
 /**
  * @param {object} props
- * @param {function} props.onOpenModal - Existing function to open the project detail modal.
- * @param {function} props.onViewOtherProjects - New function to trigger showing the other projects section.
- * @param {boolean} props.showCta - New flag to determine if the 'See Other Projects' button should be visible.
+ * @param {function} props.onOpenModal - Function to open the project detail modal.
+ * @param {function} props.onViewOtherProjects - Function to trigger showing the other projects section.
+ * @param {boolean} props.showCta - Flag to determine if the 'See Other Projects' button should be visible.
  */
 export default function ProjectsGrid({ onOpenModal, onViewOtherProjects, showCta }) {
   return (
-    <section id="projects" className="py-12 md:py-24">
+    <section id="projects" className="py-12 md:py-2">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-extrabold text-gray-800 mb-2">
           Featured Projects
@@ -28,15 +28,14 @@ export default function ProjectsGrid({ onOpenModal, onViewOtherProjects, showCta
             <ProjectCard 
               key={project.id} 
               project={project} 
-              // RE-INTEGRATING YOUR EXISTING MODAL LOGIC HERE
               onOpenModal={() => onOpenModal(project)} 
-              // Spread the rest of the project properties (assuming ProjectCard uses them)
+              // Spread the rest of the project properties
               {...project} 
             />
           ))}
         </div>
 
-        {/* New: See Other Projects CTA */}
+        {/* See Other Projects CTA */}
         {showCta && (
           <div className="flex justify-center mt-16">
             <button

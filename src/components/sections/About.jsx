@@ -1,25 +1,31 @@
 // src/components/sections/About.jsx
 
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import { ArrowUpRight } from 'lucide-react';
 import { RESUME_URL } from '../../assets/config';
 
 export default function About() {
   return (
-    <section id="about" className="bg-indigo-50 p-10 rounded-xl shadow-inner">
+    <section 
+      id="about" 
+      className="
+        bg-indigo-50 p-10 rounded-xl shadow-inner
+        transition duration-300 ease-in-out
+        hover:shadow-xl hover:-translate-y-1 cursor-default
+      "
+    >
       <h3 className="text-4xl font-bold text-gray-800 mb-6 border-b border-indigo-200 pb-2">About Malusi</h3>
       <div className="grid md:grid-cols-3 gap-8 items-center">
         <div className="md:col-span-2 space-y-4 text-gray-700 text-lg">
           <div>
-            <ReactMarkdown>
-              My journey into technology was a deliberate one. My previous career in **accounting and data management** was built on meticulous attention to detail, complex data reconciliation, and a methodical approach to problem-solving. I found that the same skills that ensure financial reliability—precision and logic—are exactly what makes an excellent developer.
-            </ReactMarkdown>
+            <p>
+              My journey into technology was a deliberate one. My previous career in <strong>accounting and data management</strong> was built on meticulous attention to detail, complex data reconciliation, and a methodical approach to problem-solving. I found that the same skills that ensure financial reliability—precision and logic—are exactly what makes an excellent developer.
+            </p>
           </div>
           <div>
-            <ReactMarkdown>
-              I have spent the last two years translating this analytical mindset into a robust technical toolkit, focusing on **React, Node.js, and Test-Driven Development (TDD)**. I am not just a developer; I am an analytical problem-solver who can write clean, tested code.
-            </ReactMarkdown>
+            <p>
+              I have spent the last two years translating this analytical mindset into a robust technical toolkit, focusing on <strong>React, Node.js, and Test-Driven Development (TDD)</strong>. I am not just a developer; I am an analytical problem-solver who can write clean, tested code.
+            </p>
           </div>
           <p className="font-semibold text-indigo-800">
             I am eager to join a team where my unique perspective can contribute to highly reliable, user-focused applications.
