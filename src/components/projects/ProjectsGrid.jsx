@@ -20,7 +20,7 @@ export default function ProjectsGrid({ onOpenModal, onViewOtherProjects, showCta
           Featured Projects
         </h2>
         <p className="text-xl text-gray-500 mb-10">
-          Highlighting my best and most technically complex work.
+          A selection of high-impact projects showcasing my most advanced skills and expertise.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

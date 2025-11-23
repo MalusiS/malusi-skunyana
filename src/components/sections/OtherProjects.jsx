@@ -69,7 +69,7 @@ export default function OtherProjects({ isVisible, onLoaded }) {
           Other Projects & Demos
         </h2>
         <p className="text-xl text-gray-500 mb-10 animate-fade-up delay-100">
-          A collection of smaller projects and freeCodeCamp challenges demonstrating core skills.
+          A collection of additional projects that highlight a variety of skills and technologies.
         </p>
 
         {/* Projects Grid */}

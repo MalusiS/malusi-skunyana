@@ -16,7 +16,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-6">
         <h3 className="text-4xl font-bold mb-3">Let's Connect</h3>
         <p className="text-lg mb-6 text-gray-300">
-          I am actively seeking Junior Developer roles and am eager to discuss how my analytical background can benefit your team. 
+          I am actively seeking Developer roles and am eager to discuss how my analytical background can benefit your team. 
           <br />You can also reach me directly at <a href={`mailto:${EMAIL}`} className="text-indigo-400 hover:text-indigo-300 transition underline">{EMAIL}</a>.
         </p>
 
@@ -25,7 +25,7 @@ export default function Contact() {
           name="contact-portfolio" 
           method="POST" 
           data-netlify="true" 
-          netlify-honeypot="bot-field" 
+          data-netlify-honeypot="bot-field" 
           className="space-y-4 max-w-xl"
         >
           {/* REQUIRED: Hidden input field to identify the form in Netlify */}
@@ -43,8 +43,7 @@ export default function Contact() {
               type="text" 
               id="name" 
               name="name" 
-              required 
-              // FIX: Changed autocomplete to autoComplete
+              required
               autoComplete="name"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 bg-white text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" 
             />
@@ -56,8 +55,7 @@ export default function Contact() {
               type="email" 
               id="email" 
               name="email" 
-              required 
-              // FIX: Changed autocomplete to autoComplete
+              required
               autoComplete="email"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 bg-white text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" 
             />
