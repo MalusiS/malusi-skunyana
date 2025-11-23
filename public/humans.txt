@@ -1,0 +1,12 @@
+/* TEAM */
+Developer: Malusi Skunyana
+Website: https://malusis.tech
+Location: South Africa
+
+/* SITE */
+Last update: 2025
+Technology: React, TailwindCSS, JavaScript
+Hosting: Netlify
+
+/* THANKS */
+Thanks for visiting my portfolio!
