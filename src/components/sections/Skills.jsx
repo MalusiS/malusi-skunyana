@@ -5,7 +5,7 @@ import { ArrowDown, Code2, Server, CheckCircle } from 'lucide-react'; // Ensure 
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-12 md:py-2 bg-white">
+    <section id="skills" className="py-12 md:py-4 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <h3 className="text-4xl font-extrabold text-gray-800 mb-4 border-b pb-4">
           Technical Toolkit
