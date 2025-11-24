@@ -5,7 +5,7 @@ export const LINKEDIN_URL = 'https://www.linkedin.com/in/malusis/';
 export const RESUME_URL = '/Malusi_Skunyana_Resume.pdf';
 export const PROFILE_PHOTO_URL = '/malusi-professional-photo.png';
 export const EMAIL = 'malusiskunyana@gmail.com';
-export const LOCATION = 'Cape Town, South Africa';
+export const LOCATION = 'Cape Town, RSA';
 
 export const projects = [
   {
