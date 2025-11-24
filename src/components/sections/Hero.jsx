@@ -3,12 +3,6 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react'; // Adding an arrow icon for visual cue
 
-const HeroContent = () => (
-    <>
-      I build <strong>clean, accessible, and data-driven web applications</strong>, bridging analytical problems and technical solutions. Currently advancing to full-stack engineering.
-    </>
-  );
-
 export default function Hero() {
   
   return (
@@ -24,17 +18,29 @@ export default function Hero() {
         shadow-lg
       " 
     >
-      <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
+      <h2 
+        className="
+          text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-4
+        "
+      >
         Malusi Skunyana
       </h2>
-      <p className="text-2xl font-light mb-6 opacity-90">
+      <p 
+        className="
+          text-xl sm:text-2xl font-light mb-6 opacity-90
+        "
+      >
         Front End Developer
       </p>
 
-      {/* Wrapper div to fix paragraph nesting issue */}
-      <div className="mt-2 text-xl text-white max-w-3xl mx-auto font-serif italic leading-relaxed px-4">
+      {/* Content now loads instantly */}
+      <div 
+        className="
+          mt-2 text-base sm:text-xl text-white max-w-3xl mx-auto font-serif italic leading-relaxed px-4
+        "
+      >
         <p className="inline">
-          <HeroContent />
+          I build <strong>clean, accessible, and data-driven web applications</strong>, bridging analytical problems and technical solutions. Currently advancing to full-stack engineering.
         </p>
       </div>
 
