@@ -1,11 +1,26 @@
 // src/components/sections/Contact.jsx
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { EMAIL } from '../../assets/config';
 
 export default function Contact() {
-  const [state, handleSubmit] = useForm("https://formspree.io/f/xovzardj");
+  // Use a ref to access the form element for manual resetting
+  const formRef = useRef(null);
+  
+  // Pass only the unique Form ID, NOT the full URL.
+  const [state, handleSubmit] = useForm("xovzardj");
+
+  const onSubmit = async (e) => {
+    // This calls the Formspree API
+    const result = await handleSubmit(e);
+
+    // Reset form inputs on successful submission to clear visible text
+    if (result.succeeded && formRef.current) {
+      formRef.current.reset();
+    }
+  };
+
 
   return (
     <section 
@@ -19,19 +34,26 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-6">
         <h3 className="text-4xl font-bold mb-3">Let's Connect</h3>
         <p className="text-lg mb-6 text-gray-300">
-          I am actively seeking Junior Developer roles and am eager to discuss how my analytical background can benefit your team. 
+          I’m open to new developer roles, other tech-related positions, and potential collaborations. 
           <br />You can also reach me directly at <a href={`mailto:${EMAIL}`} className="text-indigo-400 hover:text-indigo-300 transition underline">{EMAIL}</a>.
         </p>
 
         {/* SUCCESS MESSAGE STATE */}
         {state.succeeded ? (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-            <strong className="font-bold">Message Sent!</strong>
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative shadow-md mb-6" role="alert">
+            <strong className="font-bold">Message Sent Successfully!</strong>
             <span className="block sm:inline"> Thanks for reaching out. I will get back to you shortly.</span>
+            {/* Add a button to easily send another message */}
+            <button 
+              onClick={() => window.location.reload()} 
+              className="mt-3 block text-sm font-medium text-green-700 hover:text-green-900 underline"
+            >
+              Send another message
+            </button>
           </div>
         ) : (
           /* FORMSPREE FORM */
-          <form onSubmit={handleSubmit} className="space-y-4 max-w-xl">
+          <form ref={formRef} onSubmit={onSubmit} className="space-y-4 max-w-xl">
             
             {/* Name Field */}
             <div>
