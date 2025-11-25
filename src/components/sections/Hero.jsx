@@ -9,7 +9,7 @@ export default function Hero() {
     <section 
       id="hero" 
       className="
-        pt-16
+        pt-0
         text-center 
         h-[80vh]
         flex flex-col items-center justify-center
@@ -18,20 +18,20 @@ export default function Hero() {
         shadow-lg
       " 
     >
-      <h2 
+      <h1 
         className="
           text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-4
         "
       >
         Malusi Skunyana
-      </h2>
-      <p 
+      </h1>
+      <h2 
         className="
           text-xl sm:text-2xl font-light mb-6 opacity-90
         "
       >
         Front End Developer
-      </p>
+      </h2>
 
       {/* Content now loads instantly */}
       <div 

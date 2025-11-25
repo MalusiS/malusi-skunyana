@@ -8,7 +8,6 @@ export default function About() {
   return (
     <section 
       id="about" 
-      // RETAINING OLD STYLING: bg-indigo-50, padding, rounded corners, hover effects
       className="
         bg-indigo-50 p-10 rounded-xl shadow-inner
         transition duration-300 ease-in-out
@@ -18,7 +17,6 @@ export default function About() {
     >
       <div className="px-0">
         
-        {/* HEADING STYLE MATCHING OLD VERSION */}
         <h3 className="text-4xl font-bold text-gray-800 mb-6 border-b border-indigo-200 pb-2">
           About Malusi
         </h3>
@@ -29,7 +27,7 @@ export default function About() {
           {/* Right Column: Photo and Download CTA (Grouped for priority) */}
           <div className="md:col-span-1 flex flex-col items-center order-first md:order-last">
             
-            {/* 1. Professional Photo (Slightly higher placement) */}
+            {/* Professional */}
             <div className="
               w-48 h-48 mb-4
               rounded-full overflow-hidden 
@@ -43,7 +41,7 @@ export default function About() {
               />
             </div>
 
-            {/* 2. Download Resume CTA (Moved just below the photo) */}
+            {/* Download Resume CTA */}
             <a 
               href={RESUME_URL} 
               target="_blank" 
