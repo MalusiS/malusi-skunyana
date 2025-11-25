@@ -4,8 +4,8 @@ import React from 'react';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react'; 
 import { GITHUB_URL, LINKEDIN_URL, RESUME_URL, EMAIL } from '../../assets/config';
 import IconLink from '../UI/IconLink';
+import logo from '/logo.svg';
 
-// Define the navigation items for the main menu
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '#about' },
@@ -14,23 +14,19 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ];
 
-/**
- * @param {object} props
- * @param {function} props.onNavigate - Function to call when a navigation link is clicked (to reset state).
- */
 export default function Header({ onNavigate }) {
   return (
     <header className="p-6 flex items-center justify-between border-b sticky top-0 bg-white z-10 shadow-sm">
       
       {/* Brand/Logo Area */}
-      <div className="flex items-center gap-4">
-        {/* Call onNavigate when clicking the logo/title */}
-        <a href="/" onClick={onNavigate}>
-          <h1 className="text-xl md:text-2xl font-bold text-gray-800 hover:text-indigo-600 transition">
-            Malusi Skunyana
-          </h1>
+      <div className="flex items-center">
+        <a href="/" onClick={onNavigate} className="flex items-center">
+          <img 
+            src={logo} 
+            alt="Malusi Skunyana Logo" 
+            className="h-10 md:h-8 w-auto rounded-md shadow-sm"
+          />
         </a>
-        <p className="text-sm text-gray-500 hidden sm:block">Front End Developer | Analytical Precision</p>
       </div>
       
       {/* Primary Navigation Links */}
@@ -39,7 +35,6 @@ export default function Header({ onNavigate }) {
           <a
             key={item.name}
             href={item.href}
-            // Call onNavigate when clicking any menu item
             onClick={onNavigate}
             className="text-gray-600 hover:text-indigo-600 transition duration-150 font-medium"
           >

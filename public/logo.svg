@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background rounded rectangle -->
+  <rect width="200" height="100" fill="#0F172A" rx="20"/>
+  
+  <!-- Border with glow -->
+  <rect x="2" y="2" width="196" height="96" fill="none" stroke="#60A5FA" stroke-width="2" stroke-opacity="0.3" rx="19"/>
+  
+  <!-- Text "MalusiS" -->
+  <text x="100" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="#60A5FA" text-anchor="middle" dominant-baseline="middle" filter="url(#glow)">MalusiS</text>
+</svg>
