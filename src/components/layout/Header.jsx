@@ -7,7 +7,7 @@ import IconLink from '../UI/IconLink';
 
 // Define the navigation items for the main menu
 const navItems = [
-  { name: 'Home', href: '#' },
+  { name: 'Home', href: '/' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
@@ -25,7 +25,7 @@ export default function Header({ onNavigate }) {
       {/* Brand/Logo Area */}
       <div className="flex items-center gap-4">
         {/* Call onNavigate when clicking the logo/title */}
-        <a href="#" onClick={onNavigate}>
+        <a href="/" onClick={onNavigate}>
           <h1 className="text-xl md:text-2xl font-bold text-gray-800 hover:text-indigo-600 transition">
             Malusi Skunyana
           </h1>
