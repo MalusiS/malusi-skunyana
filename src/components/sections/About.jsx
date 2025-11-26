@@ -1,10 +1,10 @@
 // src/components/sections/About.jsx
 
 import React from 'react';
-import { ArrowDown, Download } from 'lucide-react';
+import { ArrowDown, FileText, Eye } from 'lucide-react';
 import { RESUME_URL, PROFILE_PHOTO_URL } from '../../assets/config';
 
-export default function About() {
+export default function About({ onOpenResume }) { // Added onOpenResume prop
   return (
     <section 
       id="about" 
@@ -21,13 +21,9 @@ export default function About() {
           About Malusi
         </h3>
 
-        {/* Main Content Grid: Photo/Resume on Right (1/3), Text on Left (2/3) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
           
-          {/* Right Column: Photo and Download CTA (Grouped for priority) */}
           <div className="md:col-span-1 flex flex-col items-center order-first md:order-last">
-            
-            {/* Professional */}
             <div className="
               w-48 h-48 mb-4
               rounded-full overflow-hidden 
@@ -41,12 +37,9 @@ export default function About() {
               />
             </div>
 
-            {/* Download Resume CTA */}
-            <a 
-              href={RESUME_URL} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              download
+            {/* Triggers View Modal */}
+            <button 
+              onClick={onOpenResume}
               className="
                 inline-flex items-center gap-2
                 px-4 py-2 
@@ -60,13 +53,12 @@ export default function About() {
                 hover:scale-[1.03]
               "
             >
-              Download Resume
-              <Download size={18} />
-            </a>
+              View Resume
+              <Eye size={18} />
+            </button>
           </div>
 
 
-          {/* Left Column: Introduction Text (2/3 width) */}
           <div className="md:col-span-2 text-lg text-gray-700 space-y-6">
             <p>
               My journey into technology was a deliberate one. My previous career in <strong>accounting and data management</strong> was built on meticulous attention to detail, complex data reconciliation, and a methodical approach to problem-solving. I found that the same skills that ensure financial reliability—precision and logic—are exactly what makes an excellent developer.
@@ -81,7 +73,6 @@ export default function About() {
           
         </div>
 
-        {/* CTA at the bottom - Spacing adjusted: mt-12 to mt-8, pt-6 to pt-4 */}
         <div className="mt-8 pt-4 text-center border-t border-indigo-200">
           <a 
             href="#skills" 

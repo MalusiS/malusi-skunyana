@@ -1,16 +1,52 @@
-# React + Vite
+# 🌐 Malusi Skunyana — Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, modern, and responsive Front End Developer Portfolio built with React, Vite, and Tailwind CSS. This website showcases featured projects, smaller demos, skills, an about section, and a contact section — wrapped in an elegant, minimal UI.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend
+- React (Functional components + Hooks)
+- Vite (fast dev server + optimized builds)
+- Tailwind CSS (utility-first styling)
+- Lucide Icons
 
-## React Compiler
+### Deployment
+- Netlify (continuous deployment from GitHub)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Additional Tools
+- Figma (brand design + favicon + logo)
+- ESLint (code quality)
+- Custom SVG logo + full favicon set
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **🌟 Hero Section** — Clean introduction with call-to-action buttons for resume, GitHub, and LinkedIn
+- **📌 Featured Projects** — Beautiful grid display with modal viewer, tech stack badges, and links
+- **📁 Other Projects Section** — Smooth-scroll reveal of smaller project demos
+- **📖 About Me** — Short professional introduction with front-end expertise focus
+- **🧠 Skills** — Organized UI showing my stack and technologies
+- **💬 Contact Section** — Simple contact form with email integration
+- **🧩 Custom Components** — ProjectCard, SimpleProjectCard, ProjectsGrid, ProjectModal, IconLink
+- **🎨 Branding** — Custom SVG logo, full favicon set, and PWA manifest
+
+## 🎨 Favicon & Branding
+
+- favicon.ico
+- PNG icons (16×16, 32×32, 96×96, 180×180, 192×192, 512×512)
+- favicon.svg
+- site.webmanifest
+
+All loaded in index.html following best practices.
+
+## 📜 License
+
+This portfolio is personal and proprietary. You may not copy the design or text without permission.
+
+## 👨🏾‍💻 Author
+
+**Malusi Skunyana**  
+Front-End Developer • UI builder • JavaScript enthusiast
+
+- **GitHub:** https://github.com/MalusiS
+- **LinkedIn:** https://linkedin.com/in/malusis
+- **Email:** malusiskunyana@gmail.com 

@@ -1,87 +1,91 @@
 // src/App.jsx
 
 import React, { useState } from 'react';
+
+// Import Layout Components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import ResumeModal from './components/layout/ResumeModal';
+
+// Import Section Components
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Skills from './components/sections/Skills';
-import ProjectsGrid from './components/projects/ProjectsGrid'; 
-import OtherProjects from './components/sections/OtherProjects'; 
 import Contact from './components/sections/Contact';
+import OtherProjects from './components/sections/OtherProjects';
 
-// Import the ProjectModal component
+// Import Project Components & Data
+import ProjectsGrid from './components/projects/ProjectsGrid';
 import ProjectModal from './components/projects/ProjectModal';
-// Import the projects data
 import { projects } from './assets/config';
 
 export default function App() {
   const [openProject, setOpenProject] = useState(null);
-  // State to control visibility of the "Other Projects" section
   const [showOtherProjects, setShowOtherProjects] = useState(false);
+  
+  // State for Resume Modal
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
-  // Helper to find the project data for the modal
   const selectedProject = projects.find(p => p.id === openProject?.id);
 
-  // Function to show the "Other Projects" section when the CTA is clicked
   const handleShowOtherProjects = () => {
     setShowOtherProjects(true);
   };
 
-  // Function to hide the "Other Projects" section when navigating elsewhere
   const handleResetOtherProjects = () => {
     if (showOtherProjects) {
       setShowOtherProjects(false);
     }
   };
   
-  // Function called by OtherProjects when it finishes loading and scrolling
   const handleOtherProjectsLoaded = () => {
-    // Console log for debugging, if necessary
-    console.log("Other Projects section loaded and scrolled to.");
+    // Optional logging
   };
 
+  // Handlers for Resume Modal
+  const openResume = (e) => {
+    if(e) e.preventDefault(); // Prevent default anchor link behavior if passed
+    setIsResumeOpen(true);
+  };
+  const closeResume = () => setIsResumeOpen(false);
+
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-white font-sans text-gray-900">
+      {/* Pass openResume handler to Header */}
+      <Header onNavigate={handleResetOtherProjects} onOpenResume={openResume} />
+      
+      <main className="px-4 sm:px-6 pb-24 space-y-24">
+        <Hero />
         
-        {/* Pass the reset handler to the Header */}
-        <Header onNavigate={handleResetOtherProjects} />
-
-        <main className="px-4 sm:px-6 pb-8 space-y-12 md:space-y-16">
-          
-          {/* 1. HERO: Introduction */}
-          <Hero />
+        {/* Pass openResume handler to About */}
+        <About onOpenResume={openResume} />
         
-          {/* 2. ABOUT: Context & Background */}
-          <About />
+        <Skills />
         
-          {/* 3. SKILLS: Technical Qualification */}
-          <Skills />
+        <ProjectsGrid 
+          onOpenModal={setOpenProject} 
+          onViewOtherProjects={handleShowOtherProjects}
+          showCta={!showOtherProjects} 
+        />
 
-          {/* 4. FEATURED PROJECTS: The Proof */}
-          <ProjectsGrid 
-            onOpenModal={setOpenProject} 
-            onViewOtherProjects={handleShowOtherProjects}
-            showCta={!showOtherProjects} // Only show the CTA if other projects are NOT visible
-          />
+        <OtherProjects 
+          isVisible={showOtherProjects} 
+          onLoaded={handleOtherProjectsLoaded}
+        />
+        
+        <Contact />
+      </main>
 
-          {/* 5. OTHER PROJECTS: Depth (Hidden by default) */}
-          <OtherProjects 
-            isVisible={showOtherProjects} 
-            onLoaded={handleOtherProjectsLoaded}
-          />
-          
-          {/* 6. CONTACT: Call to Action */}
-          <Contact />
-
-        </main>
-      </div>
-
-      {/* Project Detail Modal */}
+      {/* Modals */}
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setOpenProject(null)} 
+      />
+      
+      {/* Resume Modal */}
+      <ResumeModal 
+        isOpen={isResumeOpen} 
+        onClose={closeResume} 
       />
 
       <Footer />
