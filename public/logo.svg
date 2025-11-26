@@ -16,5 +16,5 @@
   <rect x="2" y="2" width="196" height="96" fill="none" stroke="#60A5FA" stroke-width="2" stroke-opacity="0.3" rx="19"/>
   
   <!-- Text "MalusiS" -->
-  <text x="100" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="#60A5FA" text-anchor="middle" dominant-baseline="middle" filter="url(#glow)">MalusiS</text>
+  <text x="100" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#60A5FA" text-anchor="middle" dominant-baseline="middle" filter="url(#glow)">MalusiS</text>
 </svg>
