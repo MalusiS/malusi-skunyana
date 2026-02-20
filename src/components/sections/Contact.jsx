@@ -1,109 +1,192 @@
 // src/components/sections/Contact.jsx
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
-import { EMAIL } from '../../assets/config';
+import { EMAIL, FORMSPREE_ID } from '../../assets/config';
+import { Send, Loader2 } from 'lucide-react';
 
 export default function Contact() {
-  // Use a ref to access the form element for manual resetting
-  const formRef = useRef(null);
+  const [state, handleSubmit] = useForm(FORMSPREE_ID);
+  const successRef = useRef(null);
   
-  // Pass only the unique Form ID, NOT the full URL.
-  const [state, handleSubmit] = useForm("xovzardj");
-
-  const onSubmit = async (e) => {
-    // This calls the Formspree API
-    const result = await handleSubmit(e);
-
-    // Reset form inputs on successful submission to clear visible text
-    if (result.succeeded && formRef.current) {
-      formRef.current.reset();
+  // Focus success message when submitted for A11y
+  useEffect(() => {
+    if (state.succeeded && successRef.current) {
+      successRef.current.focus();
     }
-  };
-
+  }, [state.succeeded]);
 
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
       className="
-        bg-gray-800 p-10 rounded-xl text-white
-        transition duration-300 ease-in-out
-        hover:shadow-xl hover:-translate-y-1 cursor-default
+        pt-12 pb-20 md:pt-16 md:pb-28 /* <--- CRITICAL FIX: Decoupled padding */
+        bg-gradient-to-br from-gray-900 to-gray-800 text-white
+        relative overflow-hidden
       "
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <h3 className="text-4xl font-bold mb-3">Let's Connect</h3>
-        <p className="text-lg mb-6 text-gray-300">
-          I’m open to new developer roles, other tech-related positions, and potential collaborations. 
-          <br />You can also reach me directly at <a href={`mailto:${EMAIL}`} className="text-indigo-400 hover:text-indigo-300 transition underline">{EMAIL}</a>.
-        </p>
+      {/* Subtle overlay for depth */}
+      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
 
-        {/* SUCCESS MESSAGE STATE */}
-        {state.succeeded ? (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative shadow-md mb-6" role="alert">
-            <strong className="font-bold">Message Sent Successfully!</strong>
-            <span className="block sm:inline"> Thanks for reaching out. I will get back to you shortly.</span>
-            {/* Add a button to easily send another message */}
-            <button 
-              onClick={() => window.location.reload()} 
-              className="mt-3 block text-sm font-medium text-green-700 hover:text-green-900 underline"
+      <div className="relative max-w-4xl mx-auto px-6">
+        
+        {/* Header */}
+        <header className="text-center mb-10 md:mb-14 animate-in fade-in duration-1000 motion-reduce:animate-none">
+          <h2
+            id="contact-title"
+            className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4"
+          >
+            Let’s Connect
+          </h2>
+          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed text-balance">
+            I’m open to full-time roles, freelance opportunities, or just interesting conversations.
+            Feel free to reach out directly at{" "}
+            <a
+              href={`mailto:${EMAIL}`}
+              className="text-violet-400 hover:text-violet-300 underline underline-offset-4 transition-colors duration-200"
             >
-              Send another message
-            </button>
+              {EMAIL}
+            </a>.
+          </p>
+        </header>
+
+        {state.succeeded ? (
+          <div
+            ref={successRef}
+            tabIndex={-1}
+            role="status"
+            aria-live="polite"
+            className="
+              bg-green-900/20 border border-green-500/50 text-green-100
+              px-8 py-10 rounded-2xl shadow-2xl text-center
+              animate-in zoom-in-95 duration-500
+              max-w-xl mx-auto backdrop-blur-sm
+            "
+          >
+            <h3 className="text-2xl font-bold mb-4">Message Sent Successfully!</h3>
+            <p className="text-lg opacity-90">
+              Thank you for reaching out — I’ll get back to you as soon as possible.
+            </p>
           </div>
         ) : (
-          /* FORMSPREE FORM */
-          <form ref={formRef} onSubmit={onSubmit} className="space-y-4 max-w-xl">
-            
-            {/* Name Field */}
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 max-w-xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-800 motion-reduce:animate-none"
+          >
+            {/* Name */}
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300">Name</label>
-              <input 
+              <label htmlFor="name" className="block text-sm font-medium text-gray-200 mb-2">
+                Name
+              </label>
+              <input
+                id="name"
                 type="text" 
-                id="name" 
-                name="name" 
-                required 
+                name="name"
+                required
                 autoComplete="name"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 bg-white text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" 
+                className="
+                  w-full px-5 py-4 rounded-xl bg-gray-800/70 border border-gray-600
+                  text-white placeholder-gray-300
+                  focus:outline-none focus:ring-4 focus:ring-violet-500/30 focus:border-violet-500
+                  transition-all duration-300
+                "
+                placeholder="Your name"
               />
-              <ValidationError prefix="Name" field="name" errors={state.errors} />
+              <ValidationError 
+                prefix="Name" 
+                field="name"
+                errors={state.errors}
+                className="mt-2 text-sm text-red-400"
+              />
             </div>
-            
-            {/* Email Field */}
+
+            {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email</label>
-              <input 
+              <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
+                Email
+              </label>
+              <input
+                id="email"
                 type="email" 
-                id="email" 
-                name="email" 
-                required 
+                name="email"
+                required
                 autoComplete="email"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 bg-white text-gray-900 focus:ring-indigo-500 focus:border-indigo-500" 
+                className="
+                  w-full px-5 py-4 rounded-xl bg-gray-800/70 border border-gray-600
+                  text-white placeholder-gray-300
+                  focus:outline-none focus:ring-4 focus:ring-violet-500/30 focus:border-violet-500
+                  transition-all duration-300
+                "
+                placeholder="your.email@example.com"
               />
-              <ValidationError prefix="Email" field="email" errors={state.errors} />
+              <ValidationError 
+                prefix="Email" 
+                field="email"
+                errors={state.errors}
+                className="mt-2 text-sm text-red-400"
+              />
             </div>
-            
-            {/* Message Field */}
+
+            {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300">Message</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                rows="4" 
-                required 
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 bg-white text-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
-              ></textarea>
-              <ValidationError prefix="Message" field="message" errors={state.errors} />
+              <label htmlFor="message" className="block text-sm font-medium text-gray-200 mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={6}
+                className="
+                  w-full px-5 py-4 rounded-xl bg-gray-800/70 border border-gray-600
+                  text-white placeholder-gray-300
+                  focus:outline-none focus:ring-4 focus:ring-violet-500/30 focus:border-violet-500
+                  transition-all duration-300 resize-none
+                "
+                placeholder="Tell me about your project, role, or idea..."
+              />
+              <ValidationError 
+                prefix="Message" 
+                field="message"
+                errors={state.errors}
+                className="mt-2 text-sm text-red-400"
+              />
             </div>
-            
+
             {/* Submit Button */}
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={state.submitting}
-              className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-900 bg-indigo-400 hover:bg-indigo-300 transition transform hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="
+                w-full py-4 px-8 rounded-xl mt-4
+                text-lg font-bold text-white bg-violet-600
+                hover:bg-violet-700 hover:shadow-lg hover:-translate-y-1
+                focus:outline-none focus:ring-4 focus:ring-violet-500/50
+                disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none
+                transition-all duration-300 shadow-md
+                flex items-center justify-center gap-2
+              "
             >
-              {state.submitting ? 'Sending...' : 'Send Message'}
+              {state.submitting ? (
+                <>
+                  <Loader2 className="animate-spin" size={20} />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <Send size={20} className="ml-1" />
+                </>
+              )}
             </button>
+            
+            {/* Global Error Message (if formspree fails entirely) */}
+            {state.errors && state.errors.length > 0 && (
+               <p className="text-center text-red-400 mt-4" role="alert">
+                 Something went wrong. Please try again or email me directly.
+               </p>
+            )}
           </form>
         )}
       </div>

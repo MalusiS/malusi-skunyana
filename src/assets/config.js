@@ -1,5 +1,6 @@
 // src/assets/config.js
 
+export const FORMSPREE_ID = "xovzardj";
 export const GITHUB_URL = 'https://github.com/MalusiS';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/malusis/';
 export const RESUME_URL = '/Malusi_Skunyana_Resume.pdf';
