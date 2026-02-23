@@ -1,5 +1,4 @@
 // src/components/sections/Hero.jsx
-
 import React from "react";
 import { ArrowDown } from "lucide-react";
 
@@ -9,7 +8,7 @@ const Hero = React.memo(function Hero() {
       id="hero"
       aria-labelledby="hero-title"
       className="
-        min-h-[85svh] md:min-h-[90svh]
+        min-h-[100svh] md:min-h-[92svh]   {/* ← Full viewport on mobile only */}
         flex flex-col items-center justify-center
         pt-6 md:pt-12
         text-center
@@ -24,7 +23,6 @@ const Hero = React.memo(function Hero() {
         className="absolute inset-0 bg-black/10"
         aria-hidden="true"
       />
-
       {/* Radial highlight for depth */}
       <div
         className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] pointer-events-none"
@@ -35,9 +33,9 @@ const Hero = React.memo(function Hero() {
         <h1
           id="hero-title"
           className="
-            text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]
+            text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem]   {/* smaller on mobile only */}
             font-extrabold tracking-tight
-            mb-4 /* Tightened */
+            mb-3   {/* tightened for mobile */}
             drop-shadow-2xl
             text-balance leading-[1.1]
           "
@@ -46,9 +44,9 @@ const Hero = React.memo(function Hero() {
         </h1>
 
         <h2 className="
-          text-xl sm:text-3xl md:text-4xl
+          text-lg sm:text-3xl md:text-4xl   {/* smaller on mobile only */}
           font-light
-          mb-8 /* Tightened */
+          mb-6   {/* tightened for mobile */}
           text-violet-100
         ">
           Front-End Developer
@@ -58,10 +56,10 @@ const Hero = React.memo(function Hero() {
           className="
             max-w-[90%] sm:max-w-2xl
             mx-auto
-            text-base sm:text-xl md:text-2xl
-            font-light /* Modernized: removed serif & italic */
+            text-base sm:text-xl md:text-2xl   {/* paragraph size unchanged */}
+            font-light
             leading-relaxed
-            text-violet-100/90 /* Clean, readable contrast */
+            text-violet-100/90
             drop-shadow-sm
             text-balance
           "
@@ -78,7 +76,7 @@ const Hero = React.memo(function Hero() {
           href="#about"
           aria-label="Scroll to the About section to learn more about my background and journey"
           className="
-            group mt-8 sm:mt-10 /* Pulled closer to the paragraph */
+            group mt-6 sm:mt-10   {/* reduced top margin on mobile only */}
             inline-flex items-center gap-3
             px-6 py-3 sm:px-10 sm:py-4
             text-base sm:text-xl font-semibold
