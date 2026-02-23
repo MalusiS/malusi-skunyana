@@ -33,9 +33,9 @@ const Hero = React.memo(function Hero() {
         <h1
           id="hero-title"
           className="
-            text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem]   {/* smaller on mobile only */}
+            text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]   {/* Restored to 5xl for proper visual weight */}
             font-extrabold tracking-tight
-            mb-3   {/* tightened for mobile */}
+            mb-5 sm:mb-8   {/* Increased breathing room below the name */}
             drop-shadow-2xl
             text-balance leading-[1.1]
           "
@@ -44,9 +44,9 @@ const Hero = React.memo(function Hero() {
         </h1>
 
         <h2 className="
-          text-lg sm:text-3xl md:text-4xl   {/* smaller on mobile only */}
+          text-xl sm:text-3xl md:text-4xl   {/* Bumped up to xl so it reads clearly */}
           font-light
-          mb-6   {/* tightened for mobile */}
+          mb-8 sm:mb-10   {/* Restored generous spacing before the paragraph */}
           text-violet-100
         ">
           Front-End Developer
@@ -56,7 +56,7 @@ const Hero = React.memo(function Hero() {
           className="
             max-w-[90%] sm:max-w-2xl
             mx-auto
-            text-base sm:text-xl md:text-2xl   {/* paragraph size unchanged */}
+            text-lg sm:text-xl md:text-2xl   {/* Bumped to lg to fill the space beautifully */}
             font-light
             leading-relaxed
             text-violet-100/90
@@ -76,7 +76,7 @@ const Hero = React.memo(function Hero() {
           href="#about"
           aria-label="Scroll to the About section to learn more about my background and journey"
           className="
-            group mt-6 sm:mt-10   {/* reduced top margin on mobile only */}
+            group mt-10 sm:mt-12   {/* Pushed the button down gracefully */}
             inline-flex items-center gap-3
             px-6 py-3 sm:px-10 sm:py-4
             text-base sm:text-xl font-semibold
