@@ -45,3 +45,33 @@ To run this project locally on your machine:
    ```bash
    git clone [https://github.com/MalusiS/malusi-skunyana.git](https://github.com/MalusiS/malusi-skunyana.git)
    cd malusi-skunyana
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+
+4. **Open in browser:**
+   Navigate to http://localhost:5173
+
+## 🎨 Favicon & Branding
+
+The site features a custom SVG logo and a fully compliant PWA manifest/favicon set (16x16 up to 512x512) loaded natively via `index.html`.
+
+## 📜 License
+
+This portfolio's codebase and design are personal and proprietary. You may not copy the design or text without explicit permission.
+
+## 👨🏾‍💻 Author
+
+**Malusi Skunyana**
+Front End Developer | Data Visualization | Back-End Technologies | Aspiring Full Stack Dev
+
+- **GitHub:** https://github.com/MalusiS
+
+- **LinkedIn:** https://linkedin.com/in/malusis
+
+- **Website:** https://malusis.tech
