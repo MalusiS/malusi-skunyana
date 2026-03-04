@@ -7,7 +7,7 @@ A production-ready Front-End Developer portfolio built with React, Vite, and Tai
 
 ## 🖼 Preview
 
-![The hero section of Malusi Skunyana's portfolio website](public/portfolio-hero.png)
+![The hero section of Malusi Skunyana's portfolio website](public/projects/portfolio-hero.png)
 
 ## 🚀 Tech Stack
 

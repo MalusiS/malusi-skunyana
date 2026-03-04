@@ -10,45 +10,45 @@ export const LOCATION = 'Cape Town, RSA';
 
 export const projects = [
   {
-    id: 'days-calendar',
-    title: 'Days Calendar Project',
-    tagline: 'Full-stack calendar solution with Node.js iCal generation and advanced date logic.',
-    tech: ['JavaScript', 'Node.js', 'TDD', 'iCal'],
-    github: 'https://github.com/MalusiS/Piscine-Sprint-2-Project-Days-Calendar',
-    live: 'https://cyf-malusirashaad-calendar.netlify.app/',
-    image: '/projects/days-calendar.png',
+    id: 'personal-portfolio',
+    title: 'This Portfolio Site',
+    tagline: 'High-performance SPA with perfect Lighthouse scores and responsive design.',
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Netlify'],
+    github: 'https://github.com/MalusiS/malusi-skunyana',
+    live: null, // Handled conditionally in the UI to prevent redundant page reloads
+    image: '/projects/portfolio-hero.png',
     narrative: {
-      problem: 'The goal was to track commemorative days over a 20-year span, requiring accurate calculation of complex, non-standard dates (e.g., "the second Tuesday of September") and exportable data in the iCalendar (.ics) format.',
-      solution: 'I authored the entire Node.js script responsible for iterating through the 20-year span and generating the `.ics` file content. Implemented the core JavaScript utility to process rules like finding the Nth occurrence of a specific weekday. Wrote comprehensive unit tests *before* writing the final logic (TDD) to guarantee accuracy across decades.',
-      stack: ['Node.js (Server-Side)', 'JavaScript (Date Logic)', 'Unit Testing', 'iCalendar Format']
+      problem: 'I required a professional platform to showcase the intersection of my analytical background and front-end engineering skills, demanding absolute technical perfection in performance and accessibility.',
+      solution: 'Architected a fully responsive UI utilizing custom React components, Tailwind CSS, and a serverless Formspree API. Achieved 100/100 Lighthouse scores across all metrics via strict semantic HTML and advanced JSON-LD metadata.',
+      stack: ['React Architecture', 'Tailwind CSS', 'CI/CD Pipelines', 'Technical SEO']
     }
   },
   {
-    id: 'tv-show-explorer',
-    title: 'TV Show Explorer App',
-    tagline: 'Dynamic TV shows and episodes explorer using vanilla JS, fetch API, and DOM rendering',
-    tech: ['JavaScript', 'HTML', 'Fetch API', 'CI/CD'],
-    github: 'https://github.com/MalusiS/Project-TV-Show',
-    live: 'https://cyf-malusis-tv.netlify.app/',
-    image: '/projects/tv-show-explorer.png',
+    id: 'hr-dashboard',
+    title: 'HR Management Dashboard',
+    tagline: 'Employee tracking tool digitising HR workflows with real-time features.',
+    tech: ['React', 'JavaScript', 'CSS3', 'Hooks'],
+    github: 'https://github.com/MalusiS/HR-System',
+    live: 'https://malusis-hr-system.netlify.app/',
+    image: '/projects/hr-dashboard.png',
     narrative: {
-      problem: 'Building a single-page application that allows users to browse a large catalog of TV shows, search, and navigate seamlessly between a high-level show listing and a detailed episode guide.',
-      solution: 'Architected seamless transitions between list and detail views. Implemented robust fetch logic for the TVMaze API, complete with loading states and error handling. Developed dynamic client-side search and filtering, enabling users to explore shows and episodes efficiently in real time.',
-      stack: ['JavaScript (vanilla)', 'Fetch API', 'State Management', 'Netlify CI/CD']
+      problem: 'HR administrators needed to replace error-prone manual spreadsheets with a scalable, secure digital solution for tracking candidate pipelines and interview stages in real time.',
+      solution: 'Engineered a modern, card-based interface featuring dynamic filtering, modal data entry, and robust state management. Prioritised strict data integrity to deliver a production-ready administrative tool.',
+      stack: ['React Components', 'State Management', 'Dynamic UI', 'Data Validation']
     }
   },
   {
-    id: 'spaced-repetition',
-    title: 'Spaced Repetition Tracker',
-    tagline: 'Interactive web app for spaced repetition with robust form handling and revision-schedule logic.',
-    tech: ['JavaScript', 'HTML', 'TDD', 'Accessibility'],
-    github: 'https://github.com/MalusiS/Piscine-Sprint-1-Project-Spaced-Repetition-Tracker',
-    live: 'https://cyf-malusiemmanuel-tracker.netlify.app/',
-    image: '/projects/spaced-repetition.png',
+    id: 'bookmarks-manager',
+    title: 'Shared Bookmarks Manager',
+    tagline: 'WCAG-compliant utility for bookmark persistence and validation.',
+    tech: ['Vanilla JS', 'HTML5', 'LocalStorage', 'Jest'],
+    github: 'https://github.com/MalusiS/Piscine-Sprint-3-Project-Shared-Bookmarks',
+    live: 'https://cyf-malusi-bookmarks.netlify.app/',
+    image: '/projects/shared-bookmarks.png',
     narrative: {
-      problem: 'Creating a tool to generate a reliable, multi-stage review schedule from a user-provided start date. This required high-precision date manipulation and robust input validation to prevent bad data.',
-      solution: 'Engineered the core JavaScript utility that dynamically calculates the entire 6-step review schedule (e.g., 1 day, 1 week, 1 month, 3 months, etc.). Built the complete, accessible form with integrated JavaScript validation, and used TDD to write unit tests for the complex date calculation functions.',
-      stack: ['JavaScript (ES6+)', 'Unit Testing', 'Form Validation', 'A11y Standards']
+      problem: 'Users required a reliable, cross-session bookmarking tool that was 100% accessible to screen readers and protected against malformed data entry.',
+      solution: 'Built a utility application from the ground up using semantic HTML and ARIA roles. Integrated complex input validation and LocalStorage APIs, backed by rigorous Test-Driven Development (TDD) using Jest.',
+      stack: ['Vanilla JavaScript', 'TDD (Jest)', 'Web Storage API', 'WCAG AA Standards']
     }
   }
 ];
