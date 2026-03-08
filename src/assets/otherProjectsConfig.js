@@ -12,7 +12,7 @@ export const otherProjects = [
   {
     id: 2,
     title: "TV Show Explorer App",
-    description: "A single-page application for browsing a large catalog of TV shows. Features seamless view transitions, robust fetch logic with the TVMaze API, client-side search and filtering, and CI/CD deployment via Netlify.",
+    description: "A single-page application for browsing a large catalogue of TV shows. Features seamless view transitions, robust fetch logic with the TVMaze API, client-side search and filtering, and CI/CD deployment via Netlify.",
     techStack: ["JavaScript", "HTML", "Fetch API", "CI/CD"],
     githubLink: "https://github.com/MalusiS/Project-TV-Show",
     liveLink: "https://cyf-malusis-tv.netlify.app/"
@@ -116,7 +116,7 @@ export const otherProjects = [
   {
     id: 15,
     title: "To-do App",
-    description: "A simple To-do application with full CRUD functionality, where tasks are persistently stored in localStorage. Features include dynamic rendering, specialized Edit/Update modes, unique ID generation, and a confirmation dialog to prevent accidental data loss when closing the task form.",
+    description: "A simple To-do application with full CRUD functionality, where tasks are persistently stored in localStorage. Features include dynamic rendering, specialised Edit/Update modes, unique ID generation, and a confirmation dialog to prevent accidental data loss when closing the task form.",
     techStack: ["HTML", "CSS", "Vanilla JavaScript", "localStorage"],
     githubLink: "https://github.com/MalusiS/Todo-App",
     liveLink: "https://malusis-todo-app.netlify.app"
@@ -144,13 +144,5 @@ export const otherProjects = [
     techStack: ["HTML", "CSS", "JavaScript (DOM manipulation, array filtering)"],
     githubLink: "https://github.com/MalusiS/Team-Cards",
     liveLink: "https://team-cards.netlify.app"
-  },
-  {
-    id: 19,
-    title: "Rock-Paper-Scissors Game",
-    description: "An interactive game where the player competes against a randomly generated computer choice. The script determines the round winner, updates the score, and displays the status. The game is won by the first player to reach 3 points, after which a reset button is shown to start a new match.",
-    techStack: ["HTML", "CSS", "JavaScript"],
-    githubLink: "https://github.com/MalusiS/RockPaper-Game",
-    liveLink: "https://malusis-rockpaper-game.netlify.app/"
   }
 ];

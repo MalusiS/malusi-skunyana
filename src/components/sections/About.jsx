@@ -11,7 +11,7 @@ export default function About({ onOpenResume }) {
       id="about"
       aria-labelledby="about-title"
       className="
-        pt-12 pb-12 md:pt-16 md:pb-20 lg:pb-28 /* <--- CRITICAL FIX: Responsive Bottom Padding */
+        pt-12 pb-12 md:pt-16 md:pb-20 lg:pb-28
         bg-violet-50/30
         animate-in fade-in slide-in-from-bottom-12 duration-1000 motion-reduce:animate-none
       "
@@ -55,7 +55,7 @@ export default function About({ onOpenResume }) {
               </p>
 
               <p>
-                Over the last two years, I've translated this analytical mindset into a robust technical toolkit, specializing in{' '}
+                Over the last two years, I've translated this analytical mindset into a robust technical toolkit, specialising in{' '}
                 <strong className="font-bold text-violet-800">React, Node.js, and Test-Driven Development (TDD)</strong>.
                 I'm not just a developer — I'm an analytical problem-solver who writes clean, tested, reliable code.
               </p>

@@ -19,7 +19,7 @@ export const projects = [
     image: '/projects/portfolio-hero.png',
     narrative: {
       problem: 'I required a professional platform to showcase the intersection of my analytical background and front-end engineering skills, demanding absolute technical perfection in performance and accessibility.',
-      solution: 'Architected a fully responsive UI utilizing custom React components, Tailwind CSS, and a serverless Formspree API. Achieved 100/100 Lighthouse scores across all metrics via strict semantic HTML and advanced JSON-LD metadata.',
+      solution: 'Architected a fully responsive UI utilising custom React components, Tailwind CSS, and a serverless Formspree API. Achieved 100/100 Lighthouse scores across all metrics via strict semantic HTML and advanced JSON-LD metadata.',
       stack: ['React Architecture', 'Tailwind CSS', 'CI/CD Pipelines', 'Technical SEO']
     }
   },
