@@ -38,17 +38,17 @@ export const projects = [
     }
   },
   {
-    id: 'bookmarks-manager',
-    title: 'Shared Bookmarks Manager',
-    tagline: 'WCAG-compliant utility for bookmark persistence and validation.',
-    tech: ['Vanilla JS', 'HTML5', 'LocalStorage', 'Jest'],
-    github: 'https://github.com/MalusiS/Piscine-Sprint-3-Project-Shared-Bookmarks',
-    live: 'https://cyf-malusi-bookmarks.netlify.app/',
-    image: '/projects/shared-bookmarks.png',
-    narrative: {
-      problem: 'Users required a reliable, cross-session bookmarking tool that was 100% accessible to screen readers and protected against malformed data entry.',
-      solution: 'Built a utility application from the ground up using semantic HTML and ARIA roles. Integrated complex input validation and LocalStorage APIs, backed by rigorous Test-Driven Development (TDD) using Jest.',
-      stack: ['Vanilla JavaScript', 'TDD (Jest)', 'Web Storage API', 'WCAG AA Standards']
-    }
+  id: 'bookmarks-manager',
+  title: 'Shared Bookmarks Manager',
+  tagline: '100% WCAG AA-compliant utility featuring defensive state management, XSS protection, and rigorous TDD.',
+  tech: ['Vanilla JS', 'Tailwind CSS', 'LocalStorage', 'Jest'],
+  github: 'https://github.com/MalusiS/Piscine-Sprint-3-Project-Shared-Bookmarks',
+  live: 'https://cyf-malusi-bookmarks.netlify.app/',
+  image: '/projects/shared-bookmarks.png',
+  narrative: {
+    problem: 'Users required a reliable, cross-session bookmarking tool that was completely accessible to screen readers, fully responsive across devices, and secure against malicious data entry and state mutation bugs.',
+    solution: 'Engineered a highly defensive Vanilla JS application featuring an abstracted LocalStorage API with quota handling and UUID-based state management. Achieved mathematically proven 100% WCAG AA compliance (WAVE & Lighthouse) while neutralising XSS vulnerabilities. Styled with a mobile-first Tailwind CSS architecture and fully backed by a comprehensive Jest test suite.',
+    stack: ['Vanilla JavaScript', 'Tailwind CSS', 'TDD (Jest)', 'Web Storage API', 'WCAG AA Accessibility']
   }
+}
 ];
