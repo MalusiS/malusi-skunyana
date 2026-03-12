@@ -28,8 +28,8 @@ export const projects = [
     title: 'HR Management Dashboard',
     tagline: 'Employee tracking tool digitising HR workflows with real-time features.',
     tech: ['React', 'JavaScript', 'CSS3', 'Hooks'],
-    github: 'https://github.com/MalusiS/HR-System',
-    live: 'https://malusis-hr-system.netlify.app/',
+    github: 'https://github.com/MalusiS/hr-dashboard',
+    live: 'https://malusis-hr-dashboard.netlify.app/',
     image: '/projects/hr-dashboard.png',
     narrative: {
       problem: 'HR administrators needed to replace error-prone manual spreadsheets with a scalable, secure digital solution for tracking candidate pipelines and interview stages in real time.',
