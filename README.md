@@ -2,7 +2,6 @@
 
 [![Live Website](https://img.shields.io/badge/Live-malusis.tech-cyan?style=for-the-badge)](https://malusis.tech/)
 [![Lighthouse Accessibility](https://img.shields.io/badge/Lighthouse-100%2F100_Accessibility-success?style=for-the-badge)](https://malusis.tech/)
-[![BSc CS](https://img.shields.io/badge/BSc%20CS-v7.1%20LOCKED-slate?style=for-the-badge)](https://github.com/MalusiS/bsc-cs-curriculum)
 
 A production-grade engineering portfolio showcasing commercial software development, client projects, and a rigorous self-directed Computer Science programme focused on Systems & Software Engineering. Built with React 19, Vite 7, and Tailwind CSS v4 — engineered with strict accessibility standards (WCAG AA), technical SEO, and a dark "Systems Engineering" UI architecture.
 
