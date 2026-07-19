@@ -74,6 +74,7 @@ This portfolio's codebase and design are personal and proprietary. You may not c
 ## 👨🏾‍💻 Author
 
 **Malusi Skunyana**
+
 Software Engineer | Founder, WorkCentrik
 Self-Directed B.Sc. CS (Systems & Software Engineer)
 
