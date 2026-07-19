@@ -75,8 +75,8 @@ This portfolio's codebase and design are personal and proprietary. You may not c
 ## 👨🏾‍💻 Author
 
 **Malusi Skunyana**
-Front-End Engineer → Systems & Software Engineer
-Founder @ WorkCentrik | Self-Directed B.Sc. CS (176 Credits modeled after MIT/Stanford/CMU)
+Software Engineer | Founder, WorkCentrik
+Self-Directed B.Sc. CS (Systems & Software Engineer)
 
 - Portfolio: malusis.tech
 - GitHub: github.com/MalusiS
