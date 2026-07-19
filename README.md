@@ -82,4 +82,3 @@ Self-Directed B.Sc. CS (Systems & Software Engineer)
 - Portfolio: malusis.tech
 - GitHub: github.com/MalusiS
 - LinkedIn: linkedin.com/in/malusis
-- Curriculum: github.com/MalusiS/bsc-cs-curriculum
