@@ -1,9 +1,10 @@
-# 🌐 Malusi Skunyana — Portfolio Website
+# 🌐 Malusi Skunyana — Engineering Portfolio
 
-[![Live Website](https://img.shields.io/badge/Live-malusis.tech-violet?style=for-the-badge)](https://malusis.tech/)
+[![Live Website](https://img.shields.io/badge/Live-malusis.tech-cyan?style=for-the-badge)](https://malusis.tech/)
 [![Lighthouse Accessibility](https://img.shields.io/badge/Lighthouse-100%2F100_Accessibility-success?style=for-the-badge)](https://malusis.tech/)
+[![BSc CS](https://img.shields.io/badge/BSc%20CS-v7.1%20LOCKED-slate?style=for-the-badge)](https://github.com/MalusiS/bsc-cs-curriculum)
 
-A production-ready Front-End Developer portfolio built with React, Vite, and Tailwind CSS — engineered with strict accessibility standards, technical SEO, and a refined "Endless Canvas" UI architecture.
+A production-grade engineering portfolio showcasing commercial software development, client projects, and a rigorous self-directed Computer Science programme focused on Systems & Software Engineering. Built with React 19, Vite 7, and Tailwind CSS v4 — engineered with strict accessibility standards (WCAG AA), technical SEO, and a dark "Systems Engineering" UI architecture.
 
 ## 🖼 Preview
 
@@ -11,9 +12,9 @@ A production-ready Front-End Developer portfolio built with React, Vite, and Tai
 
 ## 🚀 Tech Stack
 
-- **Framework:** React 18 (Functional Components, Hooks)
-- **Build Tool:** Vite (Fast HMR & optimized production builds)
-- **Styling:** Tailwind CSS (Utility-first, responsive design, fluid typography)
+- **Framework:** React 19 (Functional Components, Hooks, Suspense)
+- **Build Tool:** Vite 7 (Fast HMR & optimized production builds)
+- **Styling:** Tailwind CSS v4 (Utility-first, dark theme, responsive design)
 - **Animations:** `tailwindcss-animate` (Smooth scroll reveals, reduced-motion compliant)
 - **Icons:** Lucide React
 - **Forms:** Formspree API (Serverless form handling)
@@ -21,29 +22,35 @@ A production-ready Front-End Developer portfolio built with React, Vite, and Tai
 
 ## 🧠 Key Architectural Decisions
 
-This portfolio was engineered to demonstrate "Senior-level" front-end best practices:
+This portfolio was engineered to demonstrate senior-level front-end best practices while serving as public evidence of a rigorous self-directed B.Sc. CS curriculum:
 
-- **Elite Accessibility (100/100 Lighthouse):** Achieved perfect accessibility scores by enforcing strict WCAG AA 4.5:1 color contrast ratios, implementing semantic HTML (`<article>`, `<nav>`, `<aside>`), and utilizing `focus-visible` states to preserve aesthetic integrity while ensuring flawless keyboard navigation.
-- **Technical SEO & Metadata:** Configured complete OpenGraph tags, dynamic mobile `theme-color`, and injected JSON-LD Structured Data (Schema.org) to establish clear entity relationships for search engines.
-- **Flawless Responsive Layouts:** Solved classic mobile viewport bugs by utilizing dynamic `svh` (Small Viewport Height) units for the Hero section, and decoupled Y-axis padding to eliminate "Anchor Gap" scroll alignment issues across all devices.
-- **Config-Driven Architecture:** All project narratives, tech stacks, and URLs are isolated in a centralized `src/assets/config.js` file, keeping React components strictly focused on the UI presentation layer.
-- **Modern UI/UX Patterns:** Transitioned from dated block-backgrounds to a modern "Endless Canvas" aesthetic using pure white backgrounds, subtle `gray-100` hairline borders, and calculated drop-shadows to establish a premium visual hierarchy.
+- **Elite Accessibility (100/100 Lighthouse):** Perfect accessibility scores across all categories via strict WCAG AA 4.5:1 color contrast ratios, semantic HTML (`&lt;article&gt;`, `&lt;nav&gt;`, `&lt;section&gt;`), and `focus-visible` states for flawless keyboard navigation.
+- **Technical SEO & Metadata:** Complete OpenGraph tags, JSON-LD Structured Data (Schema.org Person + Organization), dynamic `theme-color`, and canonical URLs for search engine entity recognition.
+- **Scroll Spy Navigation:** Custom IntersectionObserver implementation with smooth scroll and active section highlighting, eliminating anchor-gap alignment issues across all viewports.
+- **Config-Driven Architecture:** All project narratives, curriculum data, skills matrices, and URLs are isolated in `src/assets/config.js`. React components handle presentation only.
+- **Tiered Project Hierarchy:** Agency work (commercial clients) → Featured projects (technical depth) → Archive (learning history). Prevents dilution of production credibility.
+- **Lazy-Loaded Modals:** Project detail modals and resume viewer are code-split via React.lazy + Suspense, keeping initial bundle size minimal.
+- **Dark Systems Aesthetic:** Deep navy (`slate-950`) background with cyan (`cyan-500`) accents — signaling infrastructure, distributed systems, and engineering rigor rather than generic "tech blue."
 
 ## ✨ Features
 
-- **🌟 Hero Section:** Immersive introduction utilizing dynamic viewport height scaling and modern, text-balanced typography.
-- **📌 Featured Projects:** Premium grid display featuring custom modals, live demos, and GitHub source links.
-- **📁 Other Projects:** A progressive-disclosure layout (Load More / Show Less) for smaller demos, maximizing DOM performance and UX.
-- **🧠 Technical Toolkit:** "Tag Cloud" skill presentation showcasing expertise in Front-End, Back-End, and DevOps methodologies.
-- **💬 Contact Integration:** Fully functioning, validated contact form wired to Formspree with accessible success states.
+- **🌟 Hero Section:** Hero Section: Immersive introduction with dynamic viewport scaling, trajectory statement ('Front-End Engineer → Systems & Software Engineer'), 176-credit program badge, and dual CTAs.
+- **🏢 WorkCentrik Agency Showcase:** Production-grade client projects (WorkCentrik Corporate Hub, AMO South Africa) with Lighthouse score badges, client context, and live demo links.
+- **📌 Featured Projects:** Technical depth pieces (HR Management Portal, Engineering Portfolio, Shared Bookmarks Manager, Temporal Logic Calendar Engine) with narrative-driven modals.
+- **📁 Project Archive:** Progressive-disclosure grid for 17 learning exercises. Expands in-place below Featured Projects via toggle to preserve narrative hierarchy.
+- **🎓 BSc CS Curriculum Tracker:** Live academic progress dashboard showing 176-credit, 5-year program status (2026–2031), Year 1 course grid, closed-book exam system with self-grading rubric, Engineering Metrics Dashboard integration, and capstone preview (Multi-Tenant Agency Infrastructure).
+- **📊 Skills Matrix:** Two-tier visualization separating Production Engineering (React, TypeScript, Accessibility, CI/CD) from Systems & Mathematics (C, Java, Distributed Systems, Database Internals).
+- **🧭 The Journey:** Timeline section documenting the Accounting → Front-End → Systems Engineering trajectory with professional photo and phase-based skill tags.
+- **💬 Contact & Evidence Hub:** Formspree-integrated contact form alongside direct links to GitHub, LinkedIn, Curriculum Repository, Academic Transcript, and Technical Blog.
+- **📄 Resume Modal:** In-browser PDF viewer with download capability, accessible via header CTA and About section.
 
 ## 🛠️ Local Development
 
-To run this project locally on your machine:
+To run this project locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/MalusiS/malusi-skunyana.git](https://github.com/MalusiS/malusi-skunyana.git)
+   git clone https://github.com/MalusiS/malusi-skunyana.git
    cd malusi-skunyana
 
 2. **Install dependencies:**
@@ -55,11 +62,11 @@ To run this project locally on your machine:
    npm run dev
 
 4. **Open in browser:**
-   Navigate to http://localhost:5173
+   Navigate to `http://localhost:5173`
 
 ## 🎨 Favicon & Branding
 
-The site features a custom SVG logo and a fully compliant PWA manifest/favicon set (16x16 up to 512x512) loaded natively via `index.html`.
+The site features a custom SVG logo, fully compliant PWA manifest/favicon set (16×16 up to 512×512), and a LinkedIn-optimized banner image. All assets are loaded natively via `index.html`.
 
 ## 📜 License
 
@@ -68,10 +75,10 @@ This portfolio's codebase and design are personal and proprietary. You may not c
 ## 👨🏾‍💻 Author
 
 **Malusi Skunyana**
-Front End Developer | Data Visualization | Back-End Technologies | Aspiring Full Stack Dev
+Front-End Engineer → Systems & Software Engineer
+Founder @ WorkCentrik | Self-Directed B.Sc. CS (176 Credits modeled after MIT/Stanford/CMU)
 
-- **GitHub:** https://github.com/MalusiS
-
-- **LinkedIn:** https://linkedin.com/in/malusis
-
-- **Website:** https://malusis.tech
+- Portfolio: malusis.tech
+- GitHub: github.com/MalusiS
+- LinkedIn: linkedin.com/in/malusis
+- Curriculum: github.com/MalusiS/bsc-cs-curriculum

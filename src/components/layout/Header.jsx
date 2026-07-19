@@ -1,201 +1,138 @@
 // src/components/layout/Header.jsx
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, FileText, Menu, X } from 'lucide-react';
-import { GITHUB_URL, LINKEDIN_URL, EMAIL } from '../../assets/config';
-import IconLink from '../UI/IconLink';
-import logo from '/logo.svg';
+import React, { useState, useCallback } from 'react';
+import { Menu, X, FileText, Github, Linkedin } from 'lucide-react';
+import { navItems, GITHUB_URL, LINKEDIN_URL } from '../../assets/config';
 
-const navItems = [
-  { name: 'About', href: '#about', id: 'about' },
-  { name: 'Skills', href: '#skills', id: 'skills' },
-  { name: 'Projects', href: '#projects', id: 'projects' },
-  { name: 'Contact', href: '#contact', id: 'contact' },
-];
-
+// Update the component props: remove setActiveSection
 export default function Header({ onNavigate, onOpenResume, activeSection }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const mobileMenuRef = useRef(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const isActive = (id) => activeSection === id;
-  const isHero = activeSection === 'hero';
-
-  // Optimized scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(prev => (isScrolled !== prev ? isScrolled : prev));
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close mobile menu on outside click
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (
-        isMobileMenuOpen &&
-        mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(e.target) &&
-        !e.target.closest('button[aria-controls="mobile-menu"]')
-      ) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => document.removeEventListener('mousedown', handleOutsideClick);
-  }, [isMobileMenuOpen]);
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+  const handleNav = useCallback((id, e) => {
+    if (e && e.currentTarget) {
+      e.currentTarget.blur();
     }
-    return () => { document.body.style.overflow = ''; };
-  }, [isMobileMenuOpen]);
+    
+    setMobileOpen(false);
+    
+    // We no longer need the manual override because the 
+    // rAF loop in useScrollSpy handles it with pixel-perfection.
+    onNavigate?.();
+    
+    const el = document.getElementById(id);
+    const headerHeight = 64;
 
-  // Unified nav handler
-  const handleNavClick = () => {
-    setIsMobileMenuOpen(false);
-    if (onNavigate) onNavigate();
-  };
+    window.scrollTo({
+      top:
+        window.scrollY +
+        el.getBoundingClientRect().top -
+        headerHeight,
+      behavior: "smooth",
+    });
+  }, [onNavigate]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 shadow-md border-gray-200'
-          : 'bg-white/80 shadow-sm border-transparent'
-      } backdrop-blur-md supports-[backdrop-filter]:bg-white/70`}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <a
-              href="/"
-              onClick={handleNavClick}
-              className={`flex items-center transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 rounded-md ${
-                isHero ? 'scale-105' : ''
+    <header className="sticky top-0 z-40 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+      <div className="container flex h-16 items-center justify-between">
+        {/* Logo */}
+        <button 
+          onClick={(e) => handleNav('hero', e)} 
+          className="flex items-center gap-2 text-lg font-bold text-white hover:text-cyan-400 transition-colors focus:outline-none rounded-md"
+          aria-label="Go to home"
+        >
+          <span className="font-mono text-cyan-500">{'<'}</span>
+          MalusiS
+          <span className="font-mono text-cyan-500">{'/>'}</span>
+        </button>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={(e) => handleNav(item.id, e)}
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus:outline-none ${
+                activeSection === item.id
+                  ? 'text-cyan-400 bg-cyan-950/30'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
-              aria-current={isHero ? 'true' : undefined}
+              aria-current={activeSection === item.id ? 'page' : undefined}
             >
-              <img
-                src={logo}
-                alt="Home"
-                className={`h-8 w-auto rounded-md shadow-sm transition-all duration-300 ${
-                  isHero ? 'shadow-lg ring-2 ring-violet-600/30' : 'hover:shadow-md'
-                }`}
-              />
-            </a>
-          </div>
-          
-          {/* DESKTOP Navigation */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
-            {navItems.map((item) => {
-              const active = isActive(item.id);
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={onNavigate}
-                  className={`relative text-sm font-medium transition-colors duration-200 pb-1 ${
-                    active
-                      ? 'text-violet-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-violet-600'
-                      : 'text-gray-600 hover:text-violet-600'
-                  }`}
-                  aria-current={active ? 'true' : undefined}
-                >
-                  {item.name}
-                </a>
-              );
-            })}
-          </nav>
-          
-          {/* DESKTOP Socials & Actions */}
-          <div className="hidden md:flex items-center gap-4">
-            <IconLink href={GITHUB_URL} label="GitHub Profile">
-              <Github size={20} />
-            </IconLink>
-            <IconLink href={LINKEDIN_URL} label="LinkedIn Profile">
-              <Linkedin size={20} />
-            </IconLink>
-            <IconLink href={`mailto:${EMAIL}`} label="Send Email">
-              <Mail size={20} />
-            </IconLink>
-            <button
-              onClick={onOpenResume}
-              className="flex items-center rounded-md bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-700 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 shadow-sm hover:shadow-md"
-            >
-              <FileText size={16} className="mr-2" /> Resume
+              {item.label}
             </button>
-          </div>
-          
-          {/* MOBILE Menu Button */}
-          <div className="flex md:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-controls="mobile-menu"
-              aria-expanded={isMobileMenuOpen}
-            >
-              <span className="sr-only">{isMobileMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
+          ))}
+          <div className="mx-2 h-4 w-px bg-slate-700" />
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-slate-400 hover:text-white transition-colors focus:outline-none rounded-md"
+            aria-label="GitHub"
+          >
+            <Github size={18} />
+          </a>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-slate-400 hover:text-white transition-colors focus:outline-none rounded-md"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={18} />
+          </a>
+          <button
+            onClick={(e) => { e.currentTarget.blur(); onOpenResume(); }}
+            className="ml-2 flex items-center gap-1.5 rounded-md bg-cyan-600 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-500 transition-colors focus:outline-none"
+          >
+            <FileText size={14} />
+            Resume
+          </button>
+        </nav>
+
+        {/* Mobile Toggle */}
+        <button
+          className="md:hidden p-2 text-slate-300 focus:outline-none rounded-md"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
+        >
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
-      {/* MOBILE Menu */}
-      {isMobileMenuOpen && (
-        <div
-          id="mobile-menu"
-          ref={mobileMenuRef}
-          className="md:hidden bg-white shadow-xl border-t border-gray-100 absolute w-full left-0 top-full animate-in slide-in-from-top-2 duration-200"
-        >
-          <div className="space-y-2 px-4 pb-6 pt-4">
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-slate-800 bg-slate-950 px-4 pb-4">
+          <nav className="flex flex-col gap-1 mt-2">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={handleNavClick}
-                className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors ${
-                  isActive(item.id)
-                    ? 'bg-violet-50 text-violet-700'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-violet-600'
+              <button
+                key={item.id}
+                onClick={(e) => handleNav(item.id, e)}
+                className={`px-3 py-2 text-sm font-medium rounded-md text-left transition-colors focus:outline-none ${
+                  activeSection === item.id
+                    ? 'text-cyan-400 bg-cyan-950/30'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
-                aria-current={isActive(item.id) ? 'true' : undefined}
               >
-                {item.name}
-              </a>
+                {item.label}
+              </button>
             ))}
-            
-            {/* Mobile Socials */}
-            <div className="flex justify-center gap-8 pt-6 border-t border-gray-100 mt-6">
-              <IconLink href={GITHUB_URL} label="GitHub Profile">
-                <Github size={24} />
-              </IconLink>
-              <IconLink href={LINKEDIN_URL} label="LinkedIn Profile">
-                <Linkedin size={24} />
-              </IconLink>
-              <IconLink href={`mailto:${EMAIL}`} label="Send Email">
-                <Mail size={24} />
-              </IconLink>
+            <div className="my-2 h-px bg-slate-800" />
+            <div className="flex gap-2">
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white focus:outline-none rounded-md">
+                <Github size={16} /> GitHub
+              </a>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white focus:outline-none rounded-md">
+                <Linkedin size={16} /> LinkedIn
+              </a>
             </div>
-            
-            {/* Mobile Resume Button */}
             <button
-              onClick={() => { handleNavClick(); onOpenResume(); }}
-              className="mt-6 flex w-full items-center justify-center rounded-lg bg-violet-600 px-4 py-4 text-base font-bold text-white hover:bg-violet-700 transition-colors shadow-md"
+              onClick={() => { setMobileOpen(false); onOpenResume(); }}
+              className="mt-2 flex items-center justify-center gap-2 rounded-md bg-cyan-600 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-500 focus:outline-none"
             >
-              <FileText size={20} className="mr-2" /> View Resume
+              <FileText size={14} /> View Resume
             </button>
-          </div>
+          </nav>
         </div>
       )}
     </header>

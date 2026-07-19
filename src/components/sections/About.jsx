@@ -1,125 +1,128 @@
 // src/components/sections/About.jsx
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { ArrowDown, FileText } from 'lucide-react';
-import { PROFILE_PHOTO_URL } from '../../assets/config';
+import { Briefcase, Code, Cpu, ArrowRight } from 'lucide-react';
+import { RESUME_URL, PROFILE_PHOTO_URL } from '../../assets/config';
 
 export default function About({ onOpenResume }) {
+  const phases = [
+    {
+      icon: <Briefcase size={20} />,
+      period: '2017 – 2026',
+      title: 'Accounting & Operations',
+      description: 'Built a career in bookkeeping and logistics management. Developed expertise in data validation, operational analytics, and stakeholder management — skills now applied to systems engineering and production infrastructure.',
+      skills: ['Data Validation', 'Financial Reconciliation', 'Operations Management'],
+      isActive: false
+    },
+    { 
+      icon: <Code size={20} />,
+      period: '2023 – Present',
+      title: 'Front-End Engineering',
+      description: 'Transitioned into software engineering through rigorous self-study and mentorship. Achieved perfect Lighthouse scores, WCAG AA compliance, and production deployment expertise. Founded WorkCentrik in December 2025 to deliver elite web platforms for real clients. Mentor at Code Your Future since July 2025.',
+      skills: ['React', 'Accessibility', 'Technical SEO', 'Client Relations', 'Mentorship'],
+      isActive: false
+    },
+    {
+      icon: <Cpu size={20} />,
+      period: '2026 – 2031',
+      title: 'Systems & Software Engineering',
+      description: 'Self-directing a 176-credit B.Sc. CS specializing in distributed systems, operating systems, and infrastructure. Capstone: a fault-tolerant, multi-tenant distributed key-value store utilizing Raft consensus, gRPC, and Prometheus/Grafana monitoring on Kubernetes.',
+      skills: ['Distributed Systems', 'Database Internals', 'Security Engineering', 'SRE'],
+      isActive: true
+    }
+  ];
+
   return (
-    <section
-      id="about"
-      aria-labelledby="about-title"
-      className="
-        pt-12 pb-12 md:pt-16 md:pb-20 lg:pb-28
-        bg-violet-50/30
-        animate-in fade-in slide-in-from-bottom-12 duration-1000 motion-reduce:animate-none
-      "
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          
-          {/* Photo Column */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-end lg:sticky lg:top-32 h-fit"> 
-            <div className="
-              group relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96
-              rounded-full overflow-hidden
-              shadow-2xl
-              ring-8 ring-violet-200/50
-              transition-transform duration-500 hover:scale-105
-            ">
+    <section id="about" className="pt-16 pb-24" aria-labelledby="about-heading">
+      <div className="container">
+        <div className="mb-12">
+          <p className="font-mono text-sm uppercase tracking-widest text-cyan-500">Background</p>
+          <h2 id="about-heading" className="mt-2 text-3xl font-bold text-white sm:text-4xl">
+            The Journey
+          </h2>
+        </div>
+
+        {/* Photo + Intro */}
+        <div className="mb-16 flex flex-col items-start gap-8 md:flex-row md:items-center">
+          <div className="relative shrink-0">
+            <div className="h-40 w-40 overflow-hidden rounded-2xl border-2 border-slate-700 bg-slate-800 md:h-48 md:w-48">
               <img
                 src={PROFILE_PHOTO_URL}
-                alt="Malusi Skunyana professional portrait"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                alt="Malusi Skunyana professional headshot"
+                className="h-full w-full object-cover"
                 loading="lazy"
               />
             </div>
+            {/* Decorative accent */}
+            <div className="absolute -bottom-2 -right-2 h-6 w-6 rounded-full border-2 border-slate-950 bg-cyan-500" aria-hidden="true" />
           </div>
-
-          {/* Content Column */}
-          <div className="lg:col-span-7 flex flex-col items-center lg:items-start space-y-12">
-            <h2
-              id="about-title"
-              className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center lg:text-left tracking-tight"
-            >
-              About Malusi
-            </h2>
-
-            <div className="text-lg text-gray-700 space-y-10 leading-relaxed text-center lg:text-left">
-              <p>
-                My journey into technology was deliberate. My previous career in{' '}
-                <strong className="font-bold text-violet-800">accounting and data management</strong>{' '}
-                built a foundation of meticulous attention to detail, complex data reconciliation, and a methodical approach to problem-solving.
-              </p>
-
-              <p>
-                Over the last two years, I've translated this analytical mindset into a robust technical toolkit, specialising in{' '}
-                <strong className="font-bold text-violet-800">React, Node.js, and Test-Driven Development (TDD)</strong>.
-                I'm not just a developer — I'm an analytical problem-solver who writes clean, tested, reliable code.
-              </p>
-
-              <blockquote className="relative pl-8 pr-6 py-8 border-l-4 border-violet-600 bg-white/80 rounded-r-2xl shadow-lg text-left max-w-2xl mx-auto lg:mx-0">
-                <p className="text-xl md:text-2xl font-semibold text-violet-900 italic leading-relaxed text-balance">
-                  "I am eager to join a team where my unique perspective can contribute to highly reliable, user-focused applications."
-                </p>
-              </blockquote>
-
-              <div className="pt-8 flex justify-center lg:justify-start">
-                <button
-                  onClick={onOpenResume}
-                  type="button"
-                  className="
-                    group inline-flex items-center gap-4
-                    px-10 py-5
-                    text-xl font-bold rounded-full
-                    text-white bg-violet-600
-                    shadow-2xl shadow-violet-600/30
-                    hover:bg-violet-700 hover:shadow-2xl hover:-translate-y-1
-                    focus:outline-none focus:ring-4 focus:ring-violet-300/50
-                    transition-all duration-300
-                  "
-                  aria-label="Open Resume in a modal"
-                >
-                  <FileText size={26} className="group-hover:scale-110 transition-transform" />
-                  View Resume
-                </button>
-              </div>
-            </div>
+          
+          <div className="max-w-2xl">
+            <p className="text-lg leading-relaxed text-slate-300">
+              I am a Software Engineer with an accounting background, blending analytical precision with
+              modern web architecture. I am the Founder of WorkCentrik, a digital agency delivering
+              production-grade web platforms. Concurrently, I am self-directing a rigorous 176-credit
+              B.Sc. in Computer Science.
+            </p>
+            <p className="mt-4 text-slate-400">
+              Before software engineering, I built a career in accounting and operations management. That 
+              background forged expertise in data validation, operational analytics, and stakeholder 
+              management — skills I now apply to production infrastructure and systems engineering.
+            </p>
           </div>
         </div>
 
-        {/* Skills CTA */}
-        <div className="flex justify-center mt-20 md:mt-24"> 
-          <a
-            href="#skills"
-            className="
-              group inline-flex items-center gap-2 sm:gap-4
-              px-6 py-3 sm:px-10 sm:py-5
-              text-base sm:text-xl font-semibold
-              rounded-full
-              text-violet-900 bg-white
-              border-2 border-violet-600
-              shadow-lg sm:shadow-2xl
-              hover:shadow-xl hover:bg-violet-50 hover:scale-105
-              focus:outline-none focus:ring-4 focus:ring-violet-300/50
-              transition-all duration-300
-              whitespace-nowrap
-            "
+        {/* Semantic Timeline List */}
+        <div className="relative">
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-slate-800 hidden md:block" aria-hidden="true" />
+
+          <ol className="space-y-8 list-none p-0 m-0">
+            {phases.map((phase, idx) => (
+              <li key={idx} className="relative md:pl-20">
+                <div className="absolute left-6 top-6 hidden md:flex h-4 w-4 items-center justify-center rounded-full border-2 border-cyan-500 bg-slate-950" aria-hidden="true">
+                  <div className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
+                </div>
+
+                <div className={`rounded-2xl border p-6 transition-all hover:border-slate-600 ${
+                  phase.isActive
+                  ? 'border-cyan-500/50 bg-cyan-950/10 shadow-[0_0_15px_rgba(6,182,212,0.1)]' 
+                  : 'border-slate-800 bg-slate-900'
+                }`}>
+                  <div className="flex flex-wrap items-center gap-3 mb-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-950/30 text-cyan-500" aria-hidden="true">
+                      {phase.icon}
+                    </div>
+                    <div>
+                      <span className="font-mono text-xs text-cyan-500">{phase.period}</span>
+                      <h3 className="text-lg font-bold text-white">{phase.title}</h3>
+                    </div>
+                  </div>
+                  
+                  <p className="text-sm leading-relaxed text-slate-400 mb-4">{phase.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {phase.skills.map((skill) => (
+                      <span key={skill} className="rounded-md bg-slate-800 px-2.5 py-1 text-xs font-medium text-slate-300">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div className="mt-12 text-center">
+          <button
+            type="button"
+            onClick={onOpenResume}
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-6 py-3 text-sm font-medium text-slate-300 transition-all hover:border-cyan-500 hover:text-cyan-400"
           >
-            Explore My Technical Toolkit
-            <ArrowDown 
-              size={20} 
-              className="sm:w-7 sm:h-7 group-hover:translate-y-1 transition-transform duration-300" 
-            />
-          </a>
+            View Full Resume <ArrowRight size={14} />
+          </button>
         </div>
       </div>
     </section>
   );
 }
-
-About.propTypes = {
-  onOpenResume: PropTypes.func.isRequired,
-};

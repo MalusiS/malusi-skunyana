@@ -1,103 +1,88 @@
 // src/components/sections/Hero.jsx
-import React from "react";
-import { ArrowDown } from "lucide-react";
 
-const Hero = React.memo(function Hero() {
+import React from 'react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { GITHUB_URL, LINKEDIN_URL } from '../../assets/config';
+
+export default function Hero() {
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      // Move focus to the section for screen readers
+      el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+    }
+  };
+
   return (
     <section
       id="hero"
-      aria-labelledby="hero-title"
-      className="
-        min-h-[100svh] md:min-h-[92svh]   {/* ← Full viewport on mobile only */}
-        flex flex-col items-center justify-center
-        pt-6 md:pt-12
-        text-center
-        px-4 sm:px-8
-        text-white
-        bg-gradient-to-br from-violet-700 via-purple-700 to-fuchsia-600
-        relative overflow-hidden
-      "
+      className="relative flex min-h-[90vh] items-center justify-center overflow-hidden"
+      aria-label="Introduction"
     >
-      {/* Subtle texture overlay */}
-      <div
-        className="absolute inset-0 bg-black/10"
-        aria-hidden="true"
-      />
-      {/* Radial highlight for depth */}
-      <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] pointer-events-none"
-        aria-hidden="true"
-      />
+      {/* Subtle background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(30,41,59,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(30,41,59,0.3)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
-      <div className="relative z-10 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 motion-reduce:animate-none">
-        <h1
-          id="hero-title"
-          className="
-            text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem]   {/* Restored to 5xl for proper visual weight */}
-            font-extrabold tracking-tight
-            mb-5 sm:mb-8   {/* Increased breathing room below the name */}
-            drop-shadow-2xl
-            text-balance leading-[1.1]
-          "
-        >
-          Malusi Skunyana
-        </h1>
+      <div className="container relative z-10 text-center">
+        <div className="mx-auto max-w-4xl">
+          <p className="mb-4 font-mono text-sm uppercase tracking-widest text-cyan-500">
+            Front-End Engineer → Systems & Software Engineer
+          </p>
+          
+          <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
+            Malusi Skunyana
+          </h1>
+          
+          {/* Updated Tagline for trajectory consistency */}
+          <p className="mt-6 text-xl font-medium text-cyan-400 sm:text-2xl">
+            Software Engineer | Founder, WorkCentrik
+          </p>
+          
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
+            I design and build <span className="text-slate-200">production-grade, fully accessible web platforms</span> through 
+            WorkCentrik, while self-directing a <span className="text-slate-200">B.Sc. in Computer Science</span> modeled after 
+            MIT, Stanford, and CMU core curricula.
+          </p>
 
-        <h2 className="
-          text-xl sm:text-3xl md:text-4xl   {/* Bumped up to xl so it reads clearly */}
-          font-light
-          mb-8 sm:mb-10   {/* Restored generous spacing before the paragraph */}
-          text-violet-100
-        ">
-          Front-End Developer
-        </h2>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            {/* Changed to <a> tags for better semantics */}
+            <a
+              href="#agency"
+              onClick={(e) => handleScroll(e, 'agency')}
+              className="flex items-center gap-2 rounded-lg bg-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-900/20 hover:bg-cyan-500 transition-all"
+            >
+              Explore My Work
+              <ArrowRight size={16} />
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => handleScroll(e, 'contact')}
+              className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-6 py-3 text-sm font-semibold text-slate-300 hover:border-slate-500 hover:text-white transition-all"
+            >
+              Get in Touch
+            </a>
+          </div>
 
-        <p
-          className="
-            max-w-[90%] sm:max-w-2xl
-            mx-auto
-            text-lg sm:text-xl md:text-2xl   {/* Bumped to lg to fill the space beautifully */}
-            font-light
-            leading-relaxed
-            text-violet-100/90
-            drop-shadow-sm
-            text-balance
-          "
-        >
-          I build{" "}
-          <strong className="font-semibold text-white">
-            clean, accessible, and data-driven web applications
-          </strong>
-          , bridging analytical problems and technical solutions — currently
-          advancing into full-stack engineering.
-        </p>
+          <div className="mt-8 flex justify-center gap-6 text-sm text-slate-500">
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">GitHub</a>
+            <span className="text-slate-700">·</span>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">LinkedIn</a>
+            <span className="text-slate-700">·</span>
+            <span className="text-slate-500">Cape Town, South Africa</span>
+          </div>
+        </div>
 
         <a
-          href="#about"
-          aria-label="Scroll to the About section to learn more about my background and journey"
-          className="
-            group mt-10 sm:mt-12   {/* Pushed the button down gracefully */}
-            inline-flex items-center gap-3
-            px-6 py-3 sm:px-10 sm:py-4
-            text-base sm:text-xl font-semibold
-            rounded-full
-            text-violet-900 bg-white
-            shadow-xl
-            hover:shadow-2xl hover:bg-gray-50 hover:scale-105
-            focus:outline-none focus:ring-4 focus:ring-white/60
-            transition-all duration-300
-          "
+          href="#agency"
+          onClick={(e) => handleScroll(e, 'agency')}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-slate-500 hover:text-cyan-400 transition-colors"
+          aria-label="Scroll to content"
         >
-          My Background & Journey
-          <ArrowDown
-            size={22}
-            className="group-hover:translate-y-1 transition-transform duration-300"
-            aria-hidden="true"
-          />
+          <ChevronDown size={24} />
         </a>
       </div>
     </section>
   );
-});
-
-export default Hero;
+}

@@ -1,191 +1,128 @@
 // src/components/projects/ProjectModal.jsx
 
-import React, { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom'; 
-import PropTypes from 'prop-types';
-import { X, ArrowUpRight, Code, ExternalLink, Github } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { X, Github, ExternalLink, Zap } from 'lucide-react';
 
 export default function ProjectModal({ project, onClose }) {
-  const modalRef = useRef(null);
-  const previouslyFocusedElement = useRef(null);
-
-  /**
-   * 1. HOOKS FIRST
-   */
+  // Lock body scroll
   useEffect(() => {
-    // Safety check
-    if (!project) return;
-
-    // A. Define trapFocus INSIDE the effect so it's available to handleKeyDown
-    const trapFocus = (e) => {
-      if (!modalRef.current) return;
-      const focusableElements = modalRef.current.querySelectorAll(
-        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
-      );
-      if (focusableElements.length === 0) return;
-
-      const first = focusableElements[0];
-      const last = focusableElements[focusableElements.length - 1];
-
-      // Shift + Tab (Backward)
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
-      // Tab (Forward)
-      if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    // B. Setup Logic
-    previouslyFocusedElement.current = document.activeElement;
     document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, []);
 
-    const focusTimer = setTimeout(() => {
-        modalRef.current?.focus();
-    }, 50);
+  // Close on Escape
+  useEffect(() => {
+    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [onClose]);
 
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'Tab') trapFocus(e);
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
-    // C. Cleanup
-    return () => {
-      document.body.style.overflow = '';
-      document.removeEventListener('keydown', handleKeyDown);
-      clearTimeout(focusTimer);
-      previouslyFocusedElement.current?.focus();
-    };
-  }, [project, onClose]); // Dependencies
-
-  /**
-   * 2. CONDITIONAL RETURN (Must be after hooks)
-   */
   if (!project) return null;
 
-  /**
-   * 3. RENDER (Portal)
-   */
-  return ReactDOM.createPortal(
+  return (
     <div
-      className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-sm"
       onClick={onClose}
-      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
     >
       <div
-        ref={modalRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="project-modal-title"
-        aria-describedby="project-modal-description"
-        tabIndex={-1}
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl outline-none animate-in zoom-in-95 duration-200"
       >
-        <div className="p-6 md:p-8">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 rounded-full bg-slate-800 p-2 text-slate-400 hover:text-white transition-colors"
+          aria-label="Close modal"
+        >
+          <X size={18} />
+        </button>
 
-          {/* Header */}
-          <header className="flex justify-between items-start border-b pb-4 mb-6 sticky top-0 bg-white z-10">
-            <div>
-              <h2 id="project-modal-title" className="text-2xl md:text-3xl font-bold text-gray-900">
-                {project.title}
-              </h2>
-              <p id="project-modal-description" className="text-violet-600 mt-1 font-medium">
-                {project.tagline}
-              </p>
-            </div>
-            <button
-              onClick={onClose}
-              aria-label="Close project details"
-              className="p-2 rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-            >
-              <X size={24} />
-            </button>
-          </header>
+        {/* Image */}
+        {project.image && (
+          <div className="h-56 w-full bg-slate-800 overflow-hidden">
+            <img
+              src={project.image}
+              alt={`${project.title} preview`}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        )}
 
-          {/* Tech Stack */}
-          {Array.isArray(project.tech) && (
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tech.map((t) => (
-                <span key={t} className="bg-violet-50 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full border border-violet-100">
-                  {t}
-                </span>
-              ))}
+        <div className="p-6">
+          {/* Zap badge */}
+          {project.zap && (
+            <div className="mb-4 flex items-center gap-2">
+              <div className="flex items-center gap-1.5 rounded-full bg-emerald-950/60 px-3 py-1 text-xs font-bold text-emerald-400 border border-emerald-800">
+                <Zap size={12} />
+                Zap {project.zap.performance}/100
+              </div>
             </div>
           )}
 
-          {/* Narrative Sections */}
-          <div className="space-y-8 text-gray-700">
-            <section>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">🎯 Problem & Goal</h3>
-              <p className="leading-relaxed text-gray-600">{project.narrative?.problem}</p>
-            </section>
+          <h2 id="modal-title" className="text-2xl font-bold text-white">{project.title}</h2>
+          <p className="mt-2 text-sm text-cyan-500">{project.tagline}</p>
 
-            <section>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">🛠️ Solution & Role</h3>
-              <p className="leading-relaxed text-gray-600">{project.narrative?.solution}</p>
-            </section>
+          {/* Narrative */}
+          {project.narrative && (
+            <div className="mt-6 space-y-4">
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-1">Problem</h3>
+                <p className="text-sm leading-relaxed text-slate-300">{project.narrative.problem}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-1">Solution</h3>
+                <p className="text-sm leading-relaxed text-slate-300">{project.narrative.solution}</p>
+              </div>
+              {project.narrative.stack && (
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-2">Key Stack</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.narrative.stack.map((s) => (
+                      <span key={s} className="rounded-md bg-slate-800 px-2.5 py-1 text-xs font-medium text-slate-300 border border-slate-700">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
-            {Array.isArray(project.narrative?.stack) && (
-              <section>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">⚙️ Technical Highlights</h3>
-                <ul className="list-disc list-inside ml-1 space-y-1 text-gray-600 marker:text-violet-500">
-                  {project.narrative.stack.map((s) => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ul>
-              </section>
-            )}
+          {/* Tech tags */}
+          <div className="mt-6 flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <span key={t} className="rounded bg-slate-800 px-2 py-1 text-xs text-slate-400">
+                {t}
+              </span>
+            ))}
           </div>
 
           {/* Actions */}
-          <footer className="flex flex-col sm:flex-row gap-4 pt-8 mt-8 border-t">
+          <div className="mt-8 flex items-center gap-4">
             {project.live && (
               <a
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex justify-center items-center px-6 py-3 text-sm font-semibold rounded-lg text-white bg-violet-600 hover:bg-violet-700 transition-colors shadow-sm"
+                className="flex items-center gap-2 rounded-lg bg-cyan-600 px-4 py-2 text-sm font-medium text-white hover:bg-cyan-500 transition-colors"
               >
-                View Live Site <ExternalLink size={18} className="ml-2" />
+                <ExternalLink size={14} /> View Live
               </a>
             )}
-
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex justify-center items-center px-6 py-3 text-sm font-semibold rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                View Code <Github size={18} className="ml-2" />
-              </a>
-            )}
-          </footer>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-300 hover:border-slate-500 hover:text-white transition-colors"
+            >
+              <Github size={14} /> Source Code
+            </a>
+          </div>
         </div>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 }
-
-ProjectModal.propTypes = {
-  project: PropTypes.shape({
-    title: PropTypes.string,
-    tagline: PropTypes.string,
-    tech: PropTypes.array,
-    live: PropTypes.string,
-    github: PropTypes.string,
-    narrative: PropTypes.shape({
-      problem: PropTypes.string,
-      solution: PropTypes.string,
-      stack: PropTypes.array
-    })
-  }),
-  onClose: PropTypes.func.isRequired,
-};
