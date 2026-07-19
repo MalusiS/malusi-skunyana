@@ -8,28 +8,40 @@ import { navItems, GITHUB_URL, LINKEDIN_URL } from '../../assets/config';
 export default function Header({ onNavigate, onOpenResume, activeSection }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleNav = useCallback((id, e) => {
-    if (e && e.currentTarget) {
-      e.currentTarget.blur();
-    }
-    
-    setMobileOpen(false);
-    
-    // We no longer need the manual override because the 
-    // rAF loop in useScrollSpy handles it with pixel-perfection.
-    onNavigate?.();
-    
-    const el = document.getElementById(id);
-    const headerHeight = 64;
+  const handleNav = useCallback(
+  (id, e) => {
+    e?.currentTarget?.blur();
 
-    window.scrollTo({
-      top:
-        window.scrollY +
-        el.getBoundingClientRect().top -
-        headerHeight,
-      behavior: "smooth",
-    });
-  }, [onNavigate]);
+    const scrollToSection = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const header = document.querySelector("header");
+      const headerHeight = header?.offsetHeight ?? 64;
+
+      window.scrollTo({
+        top:
+          window.scrollY +
+          el.getBoundingClientRect().top -
+          headerHeight,
+        behavior: "smooth",
+      });
+
+      onNavigate?.();
+    };
+
+    if (mobileOpen) {
+      setMobileOpen(false);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(scrollToSection);
+      });
+    } else {
+      scrollToSection();
+    }
+  },
+    [mobileOpen, onNavigate]
+  );
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">

@@ -33,35 +33,35 @@ export default function CurriculumTracker() {
             label="Total Credits"
             value={`${curriculum.credits.total}`}
             sub="Semester Credits"
-            href={CURRICULUM_REPO}
+           // href={CURRICULUM_REPO}
           />
           <StatCard
             icon={FileText}
             label="Examinations"
             value={`${curriculum.exams.total}`}
             sub="Closed-Book Exams"
-            href={TRANSCRIPT_URL}
+          //  href={TRANSCRIPT_URL}
           />
           <StatCard
             icon={BookOpen}
             label="Research Papers"
             value={`${curriculum.papers.total}`}
             sub="Landmark Reviews"
-            href={CURRICULUM_REPO + '/tree/main/_research/paper-reviews'}
+          //  href={CURRICULUM_REPO + '/tree/main/_research/paper-reviews'}
           />
           <StatCard
             icon={Award}
             label="Technical Books"
             value={`${curriculum.books.total}`}
             sub="Required Reading"
-            href={CURRICULUM_REPO + '/tree/main/_reading-list'}
+          //  href={CURRICULUM_REPO + '/tree/main/_reading-list'}
           />
           <StatCard
             icon={GitPullRequest}
             label="Open Source"
             value={`${curriculum.openSource.total}`}
             sub="Meaningful PRs"
-            href={CURRICULUM_REPO + '/blob/main/_opensource/contributions.md'}
+          //  href={CURRICULUM_REPO + '/blob/main/_opensource/contributions.md'}
           />
         </div>
 
@@ -76,10 +76,10 @@ export default function CurriculumTracker() {
               {curriculum.papers.completed}/{curriculum.papers.total} reviewed
             </p>
             <a
-              href={CURRICULUM_REPO + '/tree/main/_research/paper-reviews'}
+            //  href={CURRICULUM_REPO + '/tree/main/_research/paper-reviews'}
               className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              View Reviews →
+              Coming Soon →
             </a>
           </div>
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
@@ -91,10 +91,10 @@ export default function CurriculumTracker() {
               {curriculum.books.completed}/{curriculum.books.total} completed
             </p>
             <a
-              href={CURRICULUM_REPO + '/tree/main/_reading-list'}
+            //  href={CURRICULUM_REPO + '/tree/main/_reading-list'}
               className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              View List →
+              Coming Soon →
             </a>
           </div>
         </div>
