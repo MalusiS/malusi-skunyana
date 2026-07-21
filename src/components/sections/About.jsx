@@ -18,7 +18,7 @@ export default function About({ onOpenResume }) {
       icon: <Code size={20} />,
       period: '2023 – Present',
       title: 'Front-End Engineering',
-      description: 'Transitioned into software engineering through rigorous self-study and mentorship. Achieved perfect Lighthouse scores, WCAG AA compliance, and production deployment expertise. Founded WorkCentrik in December 2025 to deliver elite web platforms for real clients. Mentor at Code Your Future since July 2025.',
+      description: 'Transitioned into software engineering through rigorous self-study and mentorship. Achieved 100/100 Lighthouse accessibility scores, WCAG AA compliance, and production deployment expertise. Founded WorkCentrik in December 2025 to deliver elite web platforms for real clients. Mentor at Code Your Future since July 2025.',
       skills: ['React', 'Accessibility', 'Technical SEO', 'Client Relations', 'Mentorship'],
       isActive: false
     },

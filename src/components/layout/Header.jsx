@@ -140,7 +140,7 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
             </div>
             <button
               onClick={() => { setMobileOpen(false); onOpenResume(); }}
-              className="mt-2 flex items-center justify-center gap-2 rounded-md bg-cyan-500 px-3 py-2 text-sm font-bold text-slate-950 transition-colors hover:bg-cyan-400 focus:outline-none"
+              className="mt-2 flex items-center justify-center gap-2 rounded-md bg-cyan-700 px-3 py-2 text-sm font-bold text-slate-50 transition-colors hover:bg-cyan-400 focus:outline-none"
             >
               <FileText size={14} /> View Resume
             </button>
