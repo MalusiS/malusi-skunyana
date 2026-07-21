@@ -10,7 +10,7 @@ export default function ProjectsGrid({ onOpenModal, onToggleArchive, showArchive
       <div className="container">
         <div className="mb-12 flex items-end justify-between">
           <div>
-            <p className="font-mono text-sm uppercase tracking-widest text-cyan-500">Technical Depth</p>
+            <p className="font-mono text-sm uppercase tracking-widest text-cyan-400">Technical Depth</p>
             <h2 id="projects-heading" className="mt-2 text-3xl font-bold text-white sm:text-4xl">
               Featured Projects
             </h2>
@@ -36,7 +36,7 @@ export default function ProjectsGrid({ onOpenModal, onToggleArchive, showArchive
                     loading="lazy"
                   />
                 ) : (
-                  <div className="flex h-40 items-center justify-center text-slate-600 font-mono text-xs">
+                  <div className="flex h-40 items-center justify-center text-slate-400 font-mono text-xs">
                     {project.id}
                   </div>
                 )}
@@ -51,12 +51,12 @@ export default function ProjectsGrid({ onOpenModal, onToggleArchive, showArchive
 
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {project.tech.slice(0, 3).map((t) => (
-                  <span key={t} className="rounded bg-slate-900 px-2 py-0.5 text-xs text-slate-400 border border-slate-800">
+                  <span key={t} className="rounded bg-slate-900 px-2 py-0.5 text-xs text-slate-300 border border-slate-800">
                     {t}
                   </span>
                 ))}
                 {project.tech.length > 3 && (
-                  <span className="rounded bg-slate-900 px-2 py-0.5 text-xs text-slate-500 border border-slate-800">
+                  <span className="rounded bg-slate-900 px-2 py-0.5 text-xs text-slate-400 border border-slate-800">
                     +{project.tech.length - 3}
                   </span>
                 )}
@@ -85,7 +85,7 @@ export default function ProjectsGrid({ onOpenModal, onToggleArchive, showArchive
                   </a>
                 <button
                   onClick={() => onOpenModal({ id: project.id })}
-                  className="ml-auto flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-cyan-400 transition-colors"
+                  className="ml-auto flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-cyan-400 transition-colors"
                 >
                   Details <ArrowUpRight size={12} />
                 </button>
@@ -98,7 +98,7 @@ export default function ProjectsGrid({ onOpenModal, onToggleArchive, showArchive
         <div className="mt-12 text-center">
           <button
             onClick={onToggleArchive}
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-5 py-2.5 text-sm font-medium text-slate-300 hover:border-slate-500 hover:text-white transition-all"
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-5 py-2.5 text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-all"
             aria-expanded={showArchive}
           >
             {showArchive ? (

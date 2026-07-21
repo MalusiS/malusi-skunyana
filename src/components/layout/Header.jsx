@@ -49,7 +49,7 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
         {/* Logo */}
         <button 
           onClick={(e) => handleNav('hero', e)} 
-          className="flex items-center gap-2 text-lg font-bold text-white hover:text-cyan-400 transition-colors focus:outline-none rounded-md"
+          className="flex items-center gap-2 rounded-md text-lg font-bold text-white transition-colors hover:text-cyan-400 focus:outline-none"
           aria-label="Go to home"
         >
           <span className="font-mono text-cyan-500">{'<'}</span>
@@ -58,15 +58,15 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
         </button>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={(e) => handleNav(item.id, e)}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus:outline-none ${
+              className={`rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none ${
                 activeSection === item.id
-                  ? 'text-cyan-400 bg-cyan-950/30'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-cyan-950/30 text-cyan-400'
+                  : 'text-slate-400 hover:bg-slate-800 hover:text-white'
               }`}
               aria-current={activeSection === item.id ? 'page' : undefined}
             >
@@ -78,7 +78,7 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 text-slate-400 hover:text-white transition-colors focus:outline-none rounded-md"
+            className="rounded-md p-2 text-slate-400 transition-colors hover:text-white focus:outline-none"
             aria-label="GitHub"
           >
             <Github size={18} />
@@ -87,14 +87,14 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 text-slate-400 hover:text-white transition-colors focus:outline-none rounded-md"
+            className="rounded-md p-2 text-slate-400 transition-colors hover:text-white focus:outline-none"
             aria-label="LinkedIn"
           >
             <Linkedin size={18} />
           </a>
           <button
             onClick={(e) => { e.currentTarget.blur(); onOpenResume(); }}
-            className="ml-2 flex items-center gap-1.5 rounded-md bg-cyan-600 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-500 transition-colors focus:outline-none"
+            className="ml-2 flex items-center gap-1.5 rounded-md bg-cyan-700 px-3 py-2 text-sm font-bold text-slate-50 transition-colors hover:bg-cyan-400 focus:outline-none"
           >
             <FileText size={14} />
             Resume
@@ -103,7 +103,7 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-slate-300 focus:outline-none rounded-md"
+          className="rounded-md p-2 text-slate-400 focus:outline-none md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
@@ -114,16 +114,16 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-slate-800 bg-slate-950 px-4 pb-4">
-          <nav className="flex flex-col gap-1 mt-2">
+        <div className="border-t border-slate-800 bg-slate-950 px-4 pb-4 md:hidden">
+          <nav className="mt-2 flex flex-col gap-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={(e) => handleNav(item.id, e)}
-                className={`px-3 py-2 text-sm font-medium rounded-md text-left transition-colors focus:outline-none ${
+                className={`rounded-md px-3 py-2 text-left text-sm font-medium transition-colors focus:outline-none ${
                   activeSection === item.id
-                    ? 'text-cyan-400 bg-cyan-950/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    ? 'bg-cyan-950/30 text-cyan-400'
+                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -131,16 +131,16 @@ export default function Header({ onNavigate, onOpenResume, activeSection }) {
             ))}
             <div className="my-2 h-px bg-slate-800" />
             <div className="flex gap-2">
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white focus:outline-none rounded-md">
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-400 hover:text-white focus:outline-none">
                 <Github size={16} /> GitHub
               </a>
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white focus:outline-none rounded-md">
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-400 hover:text-white focus:outline-none">
                 <Linkedin size={16} /> LinkedIn
               </a>
             </div>
             <button
               onClick={() => { setMobileOpen(false); onOpenResume(); }}
-              className="mt-2 flex items-center justify-center gap-2 rounded-md bg-cyan-600 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-500 focus:outline-none"
+              className="mt-2 flex items-center justify-center gap-2 rounded-md bg-cyan-500 px-3 py-2 text-sm font-bold text-slate-950 transition-colors hover:bg-cyan-400 focus:outline-none"
             >
               <FileText size={14} /> View Resume
             </button>

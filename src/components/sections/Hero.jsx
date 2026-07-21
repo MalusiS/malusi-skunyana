@@ -41,17 +41,17 @@ export default function Hero() {
           </p>
           
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
-            I design and build <span className="text-slate-200">production-grade, fully accessible web platforms</span> through 
-            WorkCentrik, while self-directing a <span className="text-slate-200">B.Sc. in Computer Science</span> modeled after 
+            I design and build <span className="font-normal text-white">production-grade, fully accessible web platforms</span> through 
+            WorkCentrik, while self-directing a <span className="font-normal text-white">B.Sc. in Computer Science</span> modeled after 
             MIT, Stanford, and CMU core curricula.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            {/* Changed to <a> tags for better semantics */}
+            {/* Changed to <a> tags for better semantics, fixed contrast */}
             <a
               href="#agency"
               onClick={(e) => handleScroll(e, 'agency')}
-              className="flex items-center gap-2 rounded-lg bg-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-900/20 hover:bg-cyan-500 transition-all"
+              className="flex items-center gap-2 rounded-lg bg-cyan-700 px-6 py-3 text-sm font-bold text-slate-50 shadow-lg shadow-cyan-900/20 transition-all hover:bg-cyan-500"
             >
               Explore My Work
               <ArrowRight size={16} />
@@ -59,25 +59,25 @@ export default function Hero() {
             <a
               href="#contact"
               onClick={(e) => handleScroll(e, 'contact')}
-              className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-6 py-3 text-sm font-semibold text-slate-300 hover:border-slate-500 hover:text-white transition-all"
+              className="flex items-center gap-2 rounded-lg border border-slate-500 bg-slate-900 px-6 py-3 text-sm font-semibold text-slate-200 transition-all hover:border-cyan-500 hover:text-cyan-400"
             >
               Get in Touch
             </a>
           </div>
 
-          <div className="mt-8 flex justify-center gap-6 text-sm text-slate-500">
-            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">GitHub</a>
-            <span className="text-slate-700">·</span>
-            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">LinkedIn</a>
-            <span className="text-slate-700">·</span>
-            <span className="text-slate-500">Cape Town, South Africa</span>
+          <div className="mt-8 flex justify-center gap-6 text-sm text-slate-400">
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="text-slate-400 transition-colors hover:text-cyan-400">GitHub</a>
+            <span className="text-slate-400" aria-hidden="true">·</span>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="text-slate-400 transition-colors hover:text-cyan-400">LinkedIn</a>
+            <span className="text-slate-400" aria-hidden="true">·</span>
+            <span>Cape Town, South Africa</span>
           </div>
         </div>
 
         <a
           href="#agency"
           onClick={(e) => handleScroll(e, 'agency')}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-slate-500 hover:text-cyan-400 transition-colors"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-slate-400 transition-colors hover:text-cyan-400"
           aria-label="Scroll to content"
         >
           <ChevronDown size={24} />

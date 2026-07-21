@@ -13,7 +13,7 @@ export default function Contact() {
     return (
       <section id="contact" className="py-24">
         <div className="container max-w-xl text-center">
-          <CheckCircle size={48} className="mx-auto text-emerald-500 mb-4" />
+          <CheckCircle size={48} className="mx-auto text-emerald-400 mb-4" />
           <h2 className="text-2xl font-bold text-white">Message Sent</h2>
           <p className="mt-2 text-slate-400">Thank you for reaching out. I will respond within 24 hours.</p>
         </div>
@@ -25,7 +25,7 @@ export default function Contact() {
     <section id="contact" className="pt-16 pb-24 bg-slate-900/50" aria-labelledby="contact-heading">
       <div className="container">
         <div className="mb-12">
-          <p className="font-mono text-sm uppercase tracking-widest text-cyan-500">Get in Touch</p>
+          <p className="font-mono text-sm uppercase tracking-widest text-cyan-400">Get in Touch</p>
           <h2 id="contact-heading" className="mt-2 text-3xl font-bold text-white sm:text-4xl">
             Contact
           </h2>
@@ -40,7 +40,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1">Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-200 mb-1">Name</label>
                   <input
                     id="name"
                     type="text"
@@ -48,12 +48,12 @@ export default function Contact() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-white placeholder-slate-400 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-200 mb-1">Email</label>
                   <input
                     id="email"
                     type="email"
@@ -61,14 +61,14 @@ export default function Contact() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-white placeholder-slate-400 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
                     placeholder="you@example.com"
                   />
                   <ValidationError prefix="Email" field="email" errors={state.errors} className="mt-1 text-xs text-red-400" />
                 </div>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-1">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-200 mb-1">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -76,7 +76,7 @@ export default function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 resize-none"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-white placeholder-slate-400 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 resize-none"
                   placeholder="Tell me about your project, opportunity, or question..."
                 />
                 <ValidationError prefix="Message" field="message" errors={state.errors} className="mt-1 text-xs text-red-400" />
@@ -84,7 +84,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-700 px-5 py-2.5 text-sm font-bold text-slate-50 hover:bg-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <Send size={14} />
                 {state.submitting ? 'Sending...' : 'Send Message'}
@@ -95,25 +95,22 @@ export default function Contact() {
           {/* Evidence Hub */}
           <div className="lg:col-span-2 space-y-6">
             <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-300 mb-4">Direct Contact</h3>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4">Direct Contact</h3>
               <div className="space-y-3">
-                <a href={`mailto:${EMAIL}`} className="flex items-center gap-3 text-sm text-slate-400 hover:text-cyan-400 transition-colors">
+                <a href={`mailto:${EMAIL}`} className="flex items-center gap-3 text-sm text-slate-300 hover:text-cyan-400 transition-colors">
                   <Mail size={16} /> {EMAIL}
                 </a>
-                <div className="flex items-center gap-3 text-sm text-slate-500">
+                <div className="flex items-center gap-3 text-sm text-slate-400">
                   <MapPin size={16} /> {LOCATION}
                 </div>
               </div>
             </div>
 
             <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-300 mb-4">Evidence Hub</h3>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4">Evidence Hub</h3>
               <div className="space-y-3">
                 <EvidenceLink href={GITHUB_URL} icon={<Github size={16} />} label="GitHub" sub="Code & Contributions" />
                 <EvidenceLink href={LINKEDIN_URL} icon={<Linkedin size={16} />} label="LinkedIn" sub="Professional Profile" />
-              {/*  <EvidenceLink href={CURRICULUM_REPO} icon={<BookOpen size={16} />} label="BSc CS Curriculum" sub="Coursework & Evidence" />
-                <EvidenceLink href={TRANSCRIPT_URL} icon={<FileText size={16} />} label="Academic Transcript" sub="Grades & Progress" />
-                <EvidenceLink href={BLOG_URL} icon={<ExternalLink size={16} />} label="Technical Blog" sub="Essays & Tutorials" /> */}
               </div>
             </div>
           </div>
@@ -131,10 +128,10 @@ function EvidenceLink({ href, icon, label, sub }) {
       rel="noopener noreferrer"
       className="flex items-center gap-3 rounded-lg p-2 -mx-2 text-sm text-slate-400 hover:bg-slate-800 hover:text-white transition-colors"
     >
-      <span className="text-cyan-500">{icon}</span>
+      <span className="text-cyan-400">{icon}</span>
       <div>
-        <p className="font-medium text-slate-300">{label}</p>
-        <p className="text-xs text-slate-500">{sub}</p>
+        <p className="font-medium text-slate-200">{label}</p>
+        <p className="text-xs text-slate-400">{sub}</p>
       </div>
     </a>
   );

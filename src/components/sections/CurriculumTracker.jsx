@@ -10,7 +10,7 @@ export default function CurriculumTracker() {
       <div className="container">
         {/* Header */}
         <div className="mb-12">
-          <p className="font-mono text-sm uppercase tracking-widest text-cyan-500">Academic Rigor</p>
+          <p className="font-mono text-sm uppercase tracking-widest text-cyan-400">Academic Rigor</p>
           <div className="mt-2 flex flex-wrap items-center gap-4">
             <h2 id="curriculum-heading" className="text-3xl font-bold text-white sm:text-4xl">
               B.Sc. Computer Science
@@ -77,7 +77,7 @@ export default function CurriculumTracker() {
             </p>
             <a
             //  href={CURRICULUM_REPO + '/tree/main/_research/paper-reviews'}
-              className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="text-sm text-cyan-400 transition-colors hover:text-cyan-300"
             >
               Coming Soon →
             </a>
@@ -92,7 +92,7 @@ export default function CurriculumTracker() {
             </p>
             <a
             //  href={CURRICULUM_REPO + '/tree/main/_reading-list'}
-              className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="text-sm text-cyan-400 transition-colors hover:text-cyan-300"
             >
               Coming Soon →
             </a>
@@ -115,7 +115,7 @@ export default function CurriculumTracker() {
               return (
                 <div key={year.year} className="flex items-center gap-4">
                   <span className="text-sm text-slate-400">Year {year.year}</span>
-                  <div className="flex-1 h-2 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-800">
                     <div
                       className="h-full bg-cyan-500 transition-all"
                       style={{ width: `${(completedExams / yearExams) * 100}%` }}
@@ -174,7 +174,7 @@ export default function CurriculumTracker() {
                 {year.courses.map((course) => (
                   <div
                     key={course.code}
-                    className={`flex items-center justify-between rounded-lg border px-4 py-3 transition-all hover:scale-[1.01] animate-fadeIn ${
+                    className={`animate-fadeIn flex items-center justify-between rounded-lg border px-4 py-3 transition-all hover:scale-[1.01] ${
                       course.status === 'In Progress'
                         ? 'border-cyan-900/50 bg-cyan-950/20'
                         : course.status === 'Completed'
@@ -184,7 +184,7 @@ export default function CurriculumTracker() {
                   >
                     <div>
                       <p className="text-sm font-medium text-white">{course.name}</p>
-                      <p className="text-xs text-slate-500">{course.code} · {course.institution} · {course.credits} cr</p>
+                      <p className="text-xs text-slate-400">{course.code} · {course.institution} · {course.credits} cr</p>
                     </div>
                     <StatusBadge status={course.status} />
                   </div>
@@ -199,7 +199,7 @@ export default function CurriculumTracker() {
           <div className="mb-3 flex items-center gap-2">
             <GitPullRequest size={18} className="text-cyan-500" />
             <h3 className="text-lg font-bold text-white">Year 5 Capstone</h3>
-            <span className="ml-auto text-xs text-slate-500">Due June 2031</span>
+            <span className="ml-auto text-xs text-slate-400">Due June 2031</span>
           </div>
           <p className="font-medium text-white">{curriculum.capstone.title}</p>
           <p className="mt-2 leading-relaxed text-sm text-slate-400">{curriculum.capstone.description}</p>
@@ -234,7 +234,7 @@ function StatCard({ icon: Icon, label, value, sub, href }) {
       </div>
       <p className="text-2xl font-bold text-white">{value}</p>
       <p className="text-sm font-medium text-slate-300">{label}</p>
-      <p className="text-xs text-slate-500">{sub}</p>
+      <p className="text-xs text-slate-400">{sub}</p>
     </a>
   );
 }
@@ -243,7 +243,7 @@ function StatusBadge({ status }) {
   const styles = {
     'Completed': 'border-emerald-800 bg-emerald-950 text-emerald-400',
     'In Progress': 'border-cyan-800 bg-cyan-950 text-cyan-400',
-    'Not Started': 'border-slate-700 bg-slate-900 text-slate-500',
+    'Not Started': 'border-slate-700 bg-slate-900 text-slate-400',
   };
   return (
     <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${styles[status] || styles['Not Started']}`}>

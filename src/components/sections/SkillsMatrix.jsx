@@ -8,7 +8,7 @@ export default function SkillsMatrix() {
     <section id="skills" className="bg-slate-900/50 pb-24 pt-16" aria-labelledby="skills-heading">
       <div className="container">
         <div className="mb-12">
-          <p className="font-mono text-sm uppercase tracking-widest text-cyan-500">Capabilities</p>
+          <p className="font-mono text-sm uppercase tracking-widest text-cyan-400">Capabilities</p>
           <h2 id="skills-heading" className="mt-2 text-3xl font-bold text-white sm:text-4xl">
             Technical Skills
           </h2>
@@ -28,7 +28,7 @@ export default function SkillsMatrix() {
 
 function SkillColumn({ title, items, accent }) {
   const maxLevel = 10;
-  const barColor = accent === 'cyan' ? 'bg-cyan-500' : 'bg-slate-500';
+  const barColor = accent === 'cyan' ? 'bg-cyan-500' : 'bg-slate-400';
   const bgColor = accent === 'cyan' ? 'bg-cyan-950/30' : 'bg-slate-800/50';
 
   // Dynamically group skills by their category defined in config.js
@@ -45,7 +45,7 @@ function SkillColumn({ title, items, accent }) {
         {Object.entries(groupedSkills).map(([category, categorySkills]) => (
           <div key={category} className="space-y-4">
             {/* Category Sub-Header */}
-            <h4 className="border-b border-slate-800 pb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <h4 className="border-b border-slate-800 pb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
               {category}
             </h4>
             
@@ -64,10 +64,10 @@ function SkillColumn({ title, items, accent }) {
                       aria-valuenow={skill.level}
                       aria-valuemin="0"
                       aria-valuemax="10"
-                      aria-label={`${skill.name} proficiency`} // Fix: Added accessible name
+                      aria-label={`${skill.name} proficiency`} 
                     />
                   </div>
-                  <span className="w-6 text-right font-mono text-xs text-slate-500">{skill.level}</span>
+                  <span className="w-6 text-right font-mono text-xs text-slate-400">{skill.level}</span>
                 </div>
               </div>
             ))}

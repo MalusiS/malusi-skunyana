@@ -9,7 +9,7 @@ export default function AgencyShowcase({ onOpenModal }) {
     <section id="agency" className="pt-16 pb-24" aria-labelledby="agency-heading">
       <div className="container">
         <div className="mb-12">
-          <p className="font-mono text-sm uppercase tracking-widest text-cyan-500">Production Work</p>
+          <p className="font-mono text-sm uppercase tracking-widest text-cyan-400">Production Work</p>
           <h2 id="agency-heading" className="mt-2 text-3xl font-bold text-white sm:text-4xl">
             WorkCentrik Digital Agency
           </h2>
@@ -26,7 +26,7 @@ export default function AgencyShowcase({ onOpenModal }) {
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition-all hover:border-slate-600 hover:shadow-xl hover:shadow-cyan-900/10"
             >
               {/* Image placeholder area */}
-              <div className="relative h-56 bg-slate-800 overflow-hidden">
+              <div className="relative h-56 overflow-hidden bg-slate-800">
                 {project.image ? (
                   <img
                     src={project.image}
@@ -35,7 +35,7 @@ export default function AgencyShowcase({ onOpenModal }) {
                     loading="lazy"
                   />
                 ) : (
-                  <div className="flex h-full items-center justify-center text-slate-600">
+                  <div className="flex h-full items-center justify-center text-slate-400">
                     <span className="font-mono text-sm">Project Screenshot</span>
                   </div>
                 )}
@@ -43,7 +43,7 @@ export default function AgencyShowcase({ onOpenModal }) {
                 
                 {/* Zap badge */}
                 {project.zap && (
-                  <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-400 border border-emerald-800">
+                  <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-emerald-800 bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-400">
                     <Zap size={12} />
                     100/100
                   </div>
@@ -53,7 +53,7 @@ export default function AgencyShowcase({ onOpenModal }) {
               <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-cyan-500">{project.client}</p>
+                    <p className="text-xs font-medium uppercase tracking-wider text-cyan-400">{project.client}</p>
                     <h3 className="mt-1 text-xl font-bold text-white">{project.title}</h3>
                   </div>
                 </div>
@@ -62,19 +62,19 @@ export default function AgencyShowcase({ onOpenModal }) {
                 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <span key={t} className="rounded-md bg-slate-800 px-2 py-1 text-xs font-medium text-slate-300 border border-slate-700">
+                    <span key={t} className="rounded-md border border-slate-700 bg-slate-800 px-2 py-1 text-xs font-medium text-slate-300">
                       {t}
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-auto pt-6 flex items-center gap-4">
+                <div className="mt-auto flex items-center gap-4 pt-6">
                   {project.live && (
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                      className="flex items-center gap-1.5 text-sm font-medium text-cyan-400 transition-colors hover:text-cyan-300"
                     >
                       <ExternalLink size={14} />
                       Live Site
@@ -84,14 +84,14 @@ export default function AgencyShowcase({ onOpenModal }) {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors"
+                    className="flex items-center gap-1.5 text-sm font-medium text-slate-400 transition-colors hover:text-white"
                   >
                     <Github size={14} />
                     Source
                   </a>
                   <button
                     onClick={() => onOpenModal({ id: project.id })}
-                    className="ml-auto flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-cyan-400 transition-colors"
+                    className="ml-auto flex items-center gap-1 text-sm font-medium text-slate-400 transition-colors hover:text-cyan-400"
                   >
                     Details <ArrowUpRight size={14} />
                   </button>
